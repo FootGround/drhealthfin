@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { MarketDataStore, Instrument, Timeframe } from '@/types/market';
+import { MarketDataStore, Instrument } from '@/types/market';
 import { INSTRUMENTS } from '@/constants/instruments';
 import { calculateHealth } from '@/utils/healthCalculator';
 

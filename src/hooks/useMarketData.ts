@@ -5,7 +5,7 @@ import { INSTRUMENTS_BY_TIER } from '@/constants/instruments';
 import { getUpdateIntervals } from '@/utils/marketHours';
 import { FinnhubQuote } from '@/types/api';
 
-const transformQuote = (ticker: string, quote: FinnhubQuote) => ({
+const transformQuote = (quote: FinnhubQuote) => ({
   currentPrice: quote.c,
   change: quote.c - quote.pc,
   changePercent: ((quote.c - quote.pc) / quote.pc) * 100,
@@ -29,7 +29,7 @@ export const useMarketData = () => {
         const data = await marketDataService.fetchBatch(tickers);
 
         data.forEach((quote, ticker) => {
-          updateInstrument(ticker, transformQuote(ticker, quote));
+          updateInstrument(ticker, transformQuote(quote));
         });
 
         setError(null);
@@ -53,7 +53,7 @@ export const useMarketData = () => {
         const data = await marketDataService.fetchBatch(tickers);
 
         data.forEach((quote, ticker) => {
-          updateInstrument(ticker, transformQuote(ticker, quote));
+          updateInstrument(ticker, transformQuote(quote));
         });
 
         calculateMetrics();
