@@ -1,0 +1,9 @@
+{
+  "bullish": 35.2,
+  "bearish": 29.8,
+  "neutral": 35.0,
+  "bullishChange": 1.2,
+  "bearishChange": -0.8,
+  "date": "2026-01-30",
+  "note": "AAII Investor Sentiment Survey - Update weekly (Thursday). Source: https://www.aaii.com/sentimentsurvey"
+}
