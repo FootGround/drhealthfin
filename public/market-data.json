@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-03T19:46:44.725Z",
+  "lastUpdated": "2026-02-03T19:47:12.107Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -31,7 +31,7 @@
         685.93,
         686.34,
         686.13,
-        685.94
+        685.68
       ]
     },
     "QQQ": {
@@ -63,7 +63,7 @@
         612.25,
         612.58,
         612.23,
-        612.08
+        611.76
       ]
     },
     "IWM": {
@@ -95,7 +95,7 @@
         259.62,
         260.11,
         260.235,
-        260.11
+        259.92
       ]
     },
     "VIXY": {
@@ -274,9 +274,9 @@
     },
     "AAPL": {
       "ticker": "AAPL",
-      "currentPrice": 270.61,
-      "change": 0.6000000000000227,
-      "changePercent": 0.22221399207437603,
+      "currentPrice": 270.71,
+      "change": 0.6999999999999886,
+      "changePercent": 0.2592496574200914,
       "previousClose": 270.01,
       "high": 271.875,
       "low": 267.61,
@@ -284,9 +284,9 @@
     },
     "MSFT": {
       "ticker": "MSFT",
-      "currentPrice": 409.14,
-      "change": -14.230000000000018,
-      "changePercent": -3.361126201667576,
+      "currentPrice": 408.98,
+      "change": -14.389999999999986,
+      "changePercent": -3.398918203935089,
       "previousClose": 423.37,
       "high": 425.9,
       "low": 408.83,
@@ -294,19 +294,19 @@
     },
     "NVDA": {
       "ticker": "NVDA",
-      "currentPrice": 176.88,
-      "change": -8.730000000000018,
-      "changePercent": -4.703410376596098,
+      "currentPrice": 176.8,
+      "change": -8.810000000000002,
+      "changePercent": -4.746511502613006,
       "previousClose": 185.61,
       "high": 186.75,
-      "low": 176.772,
+      "low": 176.7202,
       "open": 186.75
     },
     "AMZN": {
       "ticker": "AMZN",
-      "currentPrice": 236.44,
-      "change": -6.52000000000001,
-      "changePercent": -2.68356931182088,
+      "currentPrice": 236.15,
+      "change": -6.810000000000002,
+      "changePercent": -2.8029305235429707,
       "previousClose": 242.96,
       "high": 246.35,
       "low": 235.45,
@@ -314,9 +314,9 @@
     },
     "JPM": {
       "ticker": "JPM",
-      "currentPrice": 311.59,
-      "change": 3.4499999999999886,
-      "changePercent": 1.119620951515541,
+      "currentPrice": 311.26,
+      "change": 3.1200000000000045,
+      "changePercent": 1.0125267735444943,
       "previousClose": 308.14,
       "high": 316.25,
       "low": 309.095,
