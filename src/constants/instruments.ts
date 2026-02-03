@@ -33,20 +33,18 @@ export const INSTRUMENTS: InstrumentDefinition[] = [
     tooltip: 'Russell 2000 ETF - Small-cap stocks that rise when investors take risk',
   },
   {
-    ticker: 'VIX',
+    ticker: 'VIXY',
     name: 'Market Stress',
     tier: 1,
-    category: 'index',
-    tooltip: 'CBOE Volatility Index - Fear gauge. High = Market panic, Low = Calm',
-    apiSymbol: '^VIX',
+    category: 'equity',
+    tooltip: 'ProShares VIX Short-Term Futures ETF - Fear gauge. High = Market panic, Low = Calm',
   },
   {
-    ticker: '10Y',
+    ticker: 'IEF',
     name: 'Valuation Pressure',
     tier: 1,
-    category: 'index',
-    tooltip: '10-Year Treasury Yield - Cost of money. High yields pressure stock valuations',
-    apiSymbol: '^TNX',
+    category: 'equity',
+    tooltip: 'iShares 7-10 Year Treasury Bond ETF - Cost of money. High yields pressure stock valuations',
   },
 
   // Tier 2: Broad Market Barometers

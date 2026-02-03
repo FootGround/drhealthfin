@@ -19,7 +19,7 @@ dist-ssr
 .DS_Store
 *.suo
 *.ntvs*
-*.njsproj
+*.njsprojca
 *.sln
 *.sw?
 
@@ -31,3 +31,6 @@ dist-ssr
 
 # Test coverage
 coverage
+
+# Context and documentation
+context
