@@ -27,6 +27,13 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
+      - name: Fetch latest market data
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+          TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
+        run: |
+          node scripts/fetch-market-data.js
+
       - name: Install dependencies
         run: npm ci
 

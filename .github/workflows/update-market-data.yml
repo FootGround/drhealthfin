@@ -1,0 +1,84 @@
+name: Update Market Data
+
+on:
+  # Run every 15 minutes during US market hours (9:30 AM - 4:00 PM ET)
+  # Cron times are in UTC, so ET hours are +4 or +5 depending on DST
+  # 9:30 AM ET = 1:30 PM UTC (13:30) during EST / 2:30 PM UTC (14:30) during EDT
+  # 4:00 PM ET = 8:00 PM UTC (20:00) during EST / 9:00 PM UTC (21:00) during EDT
+  schedule:
+    # During EDT (March-November): 13:30-21:00 UTC, Mon-Fri
+    - cron: '*/15 13-21 * * 1-5'
+    # During EST (November-March): 14:30-21:00 UTC, Mon-Fri
+    - cron: '*/15 14-21 * * 1-5'
+
+  # Allow manual triggering from GitHub UI
+  workflow_dispatch:
+
+  # Run on push to main (for testing)
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/fetch-market-data.js'
+
+jobs:
+  fetch-and-update:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # Required to commit changes
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch market data
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+          TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
+        run: |
+          node scripts/fetch-market-data.js
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet public/market-data.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected in market data"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Market data updated"
+          fi
+
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config user.name "Market Data Bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/market-data.json
+          git commit -m "chore: update market data [skip ci]"
+          git push
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### Market Data Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Time**: $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Changed**: ${{ steps.check_changes.outputs.changed }}" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f public/market-data.json ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "#### Data Preview" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
+            head -20 public/market-data.json >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          fi

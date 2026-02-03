@@ -56,7 +56,7 @@ function calculateHealthScoreInternal(
   const spy = instruments['SPY'];
   const qqq = instruments['QQQ'];
   const iwm = instruments['IWM'];
-  const vix = instruments['VIX'] || instruments['^VIX']; // Handle ticker variations
+  const vix = instruments['VIXY'] || instruments['VIX'] || instruments['^VIX']; // Handle ticker variations
 
   // Graceful degradation - return neutral if missing data
   if (!spy || !qqq || !iwm || !vix) {

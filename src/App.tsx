@@ -179,7 +179,7 @@ function App() {
       <footer className="mt-12 py-6 border-t border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 text-center text-sm text-gray-600 dark:text-gray-400">
           <p>
-            Built with React + Vite | Data from Finnhub & Twelve Data | Hosted on GitHub Pages
+            Disclaimer: not financial advice | Data from Finnhub & Twelve Data
           </p>
         </div>
       </footer>
