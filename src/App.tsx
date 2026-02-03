@@ -1,14 +1,19 @@
 import { useMarketData } from './hooks/useMarketData';
+import { useHealthScore } from './hooks/useHealthScore';
 import { useDashboardStore } from './store/dashboardStore';
 import { useTheme } from './hooks/useTheme';
 import { getMarketStatus } from './utils/marketHours';
 import { INSTRUMENTS_BY_TIER } from './constants/instruments';
 import { formatCurrency, formatPercent } from './utils/formatters';
 import { getHealthColor } from './utils/healthCalculator';
+import { HealthScoreDisplay } from './components/HealthScoreDisplay';
+import { HealthBreakdown } from './components/HealthBreakdown';
+import { HealthScoreErrorBoundary } from './components/HealthScoreErrorBoundary';
 import { Moon, Sun } from 'lucide-react';
 
 function App() {
   useMarketData();
+  useHealthScore(); // Calculate health score from instruments
   const { theme, toggleTheme } = useTheme();
   const { instruments, isLoading, error, focusMode, setFocusMode } = useDashboardStore();
 
@@ -94,61 +99,78 @@ function App() {
           </div>
         ) : (
           <>
-            {/* Tier 1: Always Visible */}
-            <section className="mb-8">
-              <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
-                Market Overview
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-                {tier1.map((def) => {
-                  const instrument = instruments[def.ticker];
-                  if (!instrument) return null;
-
-                  const colors = getHealthColor(instrument.health);
-
-                  return (
-                    <div
-                      key={instrument.ticker}
-                      className={`card ${colors.bg} ${colors.border}`}
-                    >
-                      <div className="flex justify-between items-start mb-2">
-                        <div>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {instrument.name}
-                          </p>
-                          <p className="text-sm font-mono text-gray-500 dark:text-gray-500">
-                            {instrument.ticker}
-                          </p>
-                        </div>
-                        <span className={`badge ${colors.text}`}>
-                          {formatPercent(instrument.changePercent)}
-                        </span>
-                      </div>
-                      <p className={`text-2xl font-bold ${colors.text}`}>
-                        {formatCurrency(instrument.currentPrice)}
-                      </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                        {instrument.tooltip}
-                      </p>
-                    </div>
-                  );
-                })}
+            {/* NEW: Market Health Score - Primary */}
+            <section className="mb-12">
+              <div className="max-w-2xl mx-auto">
+                <HealthScoreErrorBoundary>
+                  <HealthScoreDisplay />
+                  <HealthBreakdown />
+                </HealthScoreErrorBoundary>
               </div>
             </section>
 
-            {/* Other Tiers - Hidden in Focus Mode */}
-            {!focusMode && (
-              <section>
-                <div className="text-center py-12">
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Additional tiers (Tier 2-6) will be displayed here.
-                  </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
-                    Component structure is ready for implementation.
-                  </p>
+            {/* Individual Metrics - Secondary (Collapsible) */}
+            <details className="mb-8" open>
+              <summary className="cursor-pointer text-lg font-semibold mb-4 text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-2 py-1 inline-block">
+                Show individual metrics ▼
+              </summary>
+
+              {/* Tier 1: Core Metrics */}
+              <section className="mb-8">
+                <h3 className="text-lg font-medium mb-4 text-gray-700 dark:text-gray-300">
+                  Market Overview
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                  {tier1.map((def) => {
+                    const instrument = instruments[def.ticker];
+                    if (!instrument) return null;
+
+                    const colors = getHealthColor(instrument.health);
+
+                    return (
+                      <div
+                        key={instrument.ticker}
+                        className={`card ${colors.bg} ${colors.border}`}
+                      >
+                        <div className="flex justify-between items-start mb-2">
+                          <div>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">
+                              {instrument.name}
+                            </p>
+                            <p className="text-sm font-mono text-gray-500 dark:text-gray-500">
+                              {instrument.ticker}
+                            </p>
+                          </div>
+                          <span className={`badge ${colors.text}`}>
+                            {formatPercent(instrument.changePercent)}
+                          </span>
+                        </div>
+                        <p className={`text-2xl font-bold ${colors.text}`}>
+                          {formatCurrency(instrument.currentPrice)}
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                          {instrument.tooltip}
+                        </p>
+                      </div>
+                    );
+                  })}
                 </div>
               </section>
-            )}
+
+              {/* Other Tiers - Hidden in Focus Mode */}
+              {!focusMode && (
+                <section>
+                  <div className="text-center py-12">
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Additional tiers (Tier 2-6) will be displayed here.
+                    </p>
+                    <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
+                      Component structure is ready for implementation.
+                    </p>
+                  </div>
+                </section>
+              )}
+            </details>
           </>
         )}
       </main>

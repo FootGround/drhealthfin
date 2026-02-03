@@ -7,12 +7,64 @@ A real-time financial market health dashboard built with React, TypeScript, and 
 
 ## Features
 
+- **Market Health Score** - Single 0-100 score synthesizing overall market conditions
 - **Real-time data** - Updates every 15-60 seconds via Finnhub & Twelve Data APIs
 - **Zero cost** - 100% free to run (GitHub Pages + free API tiers)
 - **Semantic visualization** - Traffic lights, not data tables
 - **Dark mode** - Easy on the eyes
 - **Focus mode** - Minimalist view showing only Tier 1 metrics
 - **Responsive** - Works on mobile, tablet, desktop
+- **Accessible** - Full keyboard navigation and screen reader support
+
+## Market Health Score
+
+Market Compass now features a **Market Health Score** (0-100) that simplifies complex market conditions into a single, easy-to-understand number.
+
+### What It Means
+
+The health score provides an at-a-glance answer to: *"Is the market healthy today?"*
+
+| Score Range | Status | Indicator | Meaning |
+|-------------|--------|-----------|---------|
+| **80-100** | Very Healthy | 🟢 | Strong gains, low volatility, risk-on sentiment |
+| **60-79** | Healthy | 🟢 | Normal positive conditions, steady markets |
+| **40-59** | Neutral | ⚪ | Mixed signals, choppy trading |
+| **25-39** | Unhealthy | 🟠 | Elevated stress, declining conditions |
+| **0-24** | Very Unhealthy | 🔴 | High volatility, widespread weakness |
+
+### How It's Calculated
+
+The score combines three key market indicators:
+
+1. **Market Direction (40%)** - Performance of major indices (SPY, QQQ)
+2. **Risk Appetite (30%)** - Small-cap strength relative to large-caps (IWM vs SPY)
+3. **Volatility (30%)** - Market stress level (inverse VIX)
+
+Each component is normalized to a 0-100 scale and weighted to produce the final score. The algorithm also compares today's score to yesterday's, showing whether conditions are improving or declining.
+
+### Features
+
+- **Yesterday Comparison** - See how today's health compares to yesterday (↑ Improving / ↓ Declining)
+- **Component Breakdown** - Expand to see individual scores for each factor
+- **Smart Descriptions** - Natural language explanation of what's driving the score
+- **Error Resilience** - Gracefully handles missing data or API issues
+- **Real-time Updates** - Score recalculates automatically when market data refreshes
+
+### Example
+
+```
+Market Health: 78/100
+🟢 Healthy (↑ Improving)
+
+Yesterday: 65  ↑ 13 points
+
+"Healthy conditions with rising markets"
+
+▼ See calculation details
+  Market Direction (40%):  82/100
+  Risk Appetite (30%):     75/100
+  Low Volatility (30%):    73/100
+```
 
 ## Quick Start
 
@@ -194,12 +246,23 @@ export const UPDATE_INTERVALS = {
 
 ## Roadmap
 
+### Completed ✅
+- [x] **Market Health Score** - Single 0-100 score with component breakdown
+- [x] Dark mode support
+- [x] Focus mode (Tier 1 only view)
+- [x] Responsive design
+- [x] Accessibility (WCAG AA compliant)
+
+### Planned
+- [ ] 7-day health trend sparkline
+- [ ] Share image generator for social media
 - [ ] Complete Tier 2-6 components
-- [ ] Sparkline charts
 - [ ] VIX gauge visualization
 - [ ] Ratio bars (Value/Growth, Discretionary/Staples)
-- [ ] Export to PNG feature
 - [ ] Timeframe toggle (1D, 1W, 1M, YTD)
+- [ ] Push notifications for significant health changes
+- [ ] Historical health archive (30-day trend)
+- [ ] Sector-level health scores
 - [ ] News integration
 - [ ] Mobile app (React Native)
 

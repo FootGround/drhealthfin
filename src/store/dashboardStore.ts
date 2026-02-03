@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { MarketDataStore, Instrument } from '@/types/market';
 import { INSTRUMENTS } from '@/constants/instruments';
 import { calculateHealth } from '@/utils/healthCalculator';
+import { saveYesterdayScore, getYesterdayScore } from '@/utils/healthScore';
 
 const initialInstruments: Record<string, Instrument> = INSTRUMENTS.reduce(
   (acc, def) => {
@@ -37,6 +38,11 @@ export const useDashboardStore = create<MarketDataStore>((set, get) => ({
   timeframe: '1D',
   focusMode: false,
   theme: (localStorage.getItem('theme') as 'light' | 'dark') || 'light',
+
+  // Market Health Score
+  healthScore: 50,
+  healthStatus: 'neutral',
+  previousScore: getYesterdayScore(),
 
   updateInstrument: (ticker, data) =>
     set((state) => {
@@ -97,6 +103,17 @@ export const useDashboardStore = create<MarketDataStore>((set, get) => ({
         xlyXlpRatio,
       },
     });
+  },
+
+  updateHealthData: (result) => {
+    set({
+      healthScore: result.score,
+      healthStatus: result.status,
+      previousScore: getYesterdayScore()
+    });
+
+    // Save for tomorrow's comparison
+    saveYesterdayScore(result.score);
   },
 }));
 

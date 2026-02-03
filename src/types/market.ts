@@ -4,6 +4,8 @@ export type InstrumentCategory = 'equity' | 'index' | 'commodity' | 'currency';
 
 export type HealthStatus = 'positive' | 'negative' | 'neutral';
 
+export type MarketHealthStatus = 'very-healthy' | 'healthy' | 'neutral' | 'unhealthy' | 'very-unhealthy';
+
 export type Tier = 1 | 2 | 3 | 4 | 5 | 6;
 
 export interface Instrument {
@@ -35,6 +37,17 @@ export interface HistoricalData {
   };
 }
 
+export interface HealthScoreResult {
+  score: number;
+  status: MarketHealthStatus;
+  description: string;
+  components: {
+    marketDirection: number;
+    riskAppetite: number;
+    volatility: number;
+  };
+}
+
 export interface MarketDataStore {
   lastUpdated: string;
   isLoading: boolean;
@@ -46,6 +59,11 @@ export interface MarketDataStore {
   focusMode: boolean;
   theme: 'light' | 'dark';
 
+  // Market Health Score
+  healthScore: number;
+  healthStatus: MarketHealthStatus;
+  previousScore: number | null;
+
   // Actions
   updateInstrument: (ticker: string, data: Partial<Instrument>) => void;
   setLoading: (loading: boolean) => void;
@@ -54,4 +72,5 @@ export interface MarketDataStore {
   setFocusMode: (enabled: boolean) => void;
   setTheme: (theme: 'light' | 'dark') => void;
   calculateMetrics: () => void;
+  updateHealthData: (result: HealthScoreResult) => void;
 }
