@@ -41,6 +41,7 @@ jobs:
         env:
           VITE_FINNHUB_API_KEY: ${{ secrets.VITE_FINNHUB_API_KEY }}
           VITE_TWELVE_DATA_API_KEY: ${{ secrets.VITE_TWELVE_DATA_API_KEY }}
+          VITE_FRED_API_KEY: ${{ secrets.VITE_FRED_API_KEY }}
         run: npm run build
 
       - name: Upload artifact
