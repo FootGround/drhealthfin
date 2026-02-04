@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-04T21:12:55.259Z",
+  "lastUpdated": "2026-02-04T21:29:33.842Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -284,9 +284,9 @@
     },
     "MSFT": {
       "ticker": "MSFT",
-      "currentPrice": 414.22,
-      "change": 3.0100000000000477,
-      "changePercent": 0.7319860898324574,
+      "currentPrice": 414.19,
+      "change": 2.980000000000018,
+      "changePercent": 0.724690547408871,
       "previousClose": 411.21,
       "high": 419.8,
       "low": 409.24,
@@ -294,9 +294,9 @@
     },
     "NVDA": {
       "ticker": "NVDA",
-      "currentPrice": 174.1934,
-      "change": -6.1466000000000065,
-      "changePercent": -3.408339802595102,
+      "currentPrice": 174.19,
+      "change": -6.150000000000006,
+      "changePercent": -3.410225130309419,
       "previousClose": 180.34,
       "high": 179.58,
       "low": 171.91,
