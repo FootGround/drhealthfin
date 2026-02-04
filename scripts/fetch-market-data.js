@@ -148,21 +148,43 @@ async function fetchHistorical(ticker, apiSymbol, interval = '5min', outputsize 
 }
 
 /**
+ * Get date/time components in Eastern Time
+ */
+function getEasternTimeComponents(date = new Date()) {
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    weekday: 'short',
+    hour12: false,
+  });
+
+  const parts = formatter.formatToParts(date);
+  const getValue = (type) => parts.find(p => p.type === type)?.value || '';
+
+  return {
+    hour: parseInt(getValue('hour'), 10),
+    minute: parseInt(getValue('minute'), 10),
+    day: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(getValue('weekday')),
+  };
+}
+
+/**
  * Check if market is open (US market hours)
  */
 function isMarketOpen() {
-  const now = new Date();
-  const eastern = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
-  const hour = eastern.getHours();
-  const day = eastern.getDay();
-  const minutes = eastern.getMinutes();
+  const { hour, minute, day } = getEasternTimeComponents();
 
   // Weekend
   if (day === 0 || day === 6) return false;
 
   // Weekday 9:30 AM - 4:00 PM ET
   if (hour < 9 || hour > 16) return false;
-  if (hour === 9 && minutes < 30) return false;
+  if (hour === 9 && minute < 30) return false;
 
   return true;
 }

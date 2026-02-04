@@ -1,21 +1,39 @@
 import { UPDATE_INTERVALS } from '@/constants/apiConfig';
 
-export const isMarketOpen = (): boolean => {
-  const now = new Date();
-  const eastern = new Date(
-    now.toLocaleString('en-US', { timeZone: 'America/New_York' })
-  );
+// Helper function to get date/time components in Eastern Time
+const getEasternTimeComponents = (date: Date = new Date()) => {
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    weekday: 'short',
+    hour12: false,
+  });
 
-  const hour = eastern.getHours();
-  const minutes = eastern.getMinutes();
-  const day = eastern.getDay();
+  const parts = formatter.formatToParts(date);
+  const getValue = (type: Intl.DateTimeFormatPartTypes) =>
+    parts.find(p => p.type === type)?.value || '';
+
+  return {
+    hour: parseInt(getValue('hour'), 10),
+    minute: parseInt(getValue('minute'), 10),
+    day: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(getValue('weekday')),
+  };
+};
+
+export const isMarketOpen = (): boolean => {
+  const { hour, minute, day } = getEasternTimeComponents();
 
   // Weekend
   if (day === 0 || day === 6) return false;
 
   // Market hours: 9:30 AM - 4:00 PM ET
   if (hour < 9 || hour >= 16) return false;
-  if (hour === 9 && minutes < 30) return false;
+  if (hour === 9 && minute < 30) return false;
 
   return true;
 };
@@ -35,25 +53,18 @@ export const getUpdateIntervals = () => {
 };
 
 export const getMarketStatus = (): 'open' | 'pre-market' | 'after-hours' | 'closed' => {
-  const now = new Date();
-  const eastern = new Date(
-    now.toLocaleString('en-US', { timeZone: 'America/New_York' })
-  );
-
-  const hour = eastern.getHours();
-  const minutes = eastern.getMinutes();
-  const day = eastern.getDay();
+  const { hour, minute, day } = getEasternTimeComponents();
 
   // Weekend
   if (day === 0 || day === 6) return 'closed';
 
   // Pre-market: 4:00 AM - 9:30 AM
-  if (hour >= 4 && (hour < 9 || (hour === 9 && minutes < 30))) {
+  if (hour >= 4 && (hour < 9 || (hour === 9 && minute < 30))) {
     return 'pre-market';
   }
 
   // Market hours: 9:30 AM - 4:00 PM
-  if (hour >= 9 && minutes >= 30 && hour < 16) {
+  if (hour >= 9 && minute >= 30 && hour < 16) {
     return 'open';
   }
 
