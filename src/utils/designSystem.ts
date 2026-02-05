@@ -129,6 +129,29 @@ export interface SignalStrength {
  * Determine signal strength from composite score
  * Used to communicate actionability to users
  */
+// ============================================================================
+// ORDINAL FORMATTING - For percentile display
+// ============================================================================
+
+/**
+ * Get ordinal suffix for a number (st, nd, rd, th)
+ * Handles special cases: 11th, 12th, 13th, 21st, 22nd, etc.
+ */
+export const getOrdinalSuffix = (n: number): string => {
+  const s = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  // Special case: 11, 12, 13 always use "th"
+  if (v >= 11 && v <= 13) return 'th';
+  return s[v % 10] || s[0];
+};
+
+/**
+ * Format number with ordinal suffix (1st, 2nd, 3rd, etc.)
+ */
+export const formatOrdinal = (n: number): string => {
+  return `${n}${getOrdinalSuffix(n)}`;
+};
+
 export const getSignalStrength = (score: number): SignalStrength => {
   if (score <= 30) {
     return {

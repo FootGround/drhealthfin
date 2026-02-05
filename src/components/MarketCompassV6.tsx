@@ -1,8 +1,8 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useMarketCompassData } from '@/hooks/useMarketCompassData';
 import { MarketCompassRawData, Pillars } from '@/types/marketCompass';
-import { colors as dsColors, spacing, getSignalStrength } from '@/utils/designSystem';
-import { saveScore } from '@/utils/scoreHistory';
+import { colors as dsColors, spacing, radius, getSignalStrength, formatOrdinal } from '@/utils/designSystem';
+import { saveScore, getPercentile30d, getHistoryLength } from '@/utils/scoreHistory';
 
 // ============================================================================
 // SCORING FUNCTIONS — Pure functions that convert raw values to 0-100 scores
@@ -413,6 +413,142 @@ const SignalStrengthBar = ({ level, color }: { level: 1 | 2 | 3; color: string }
 );
 
 // ============================================================================
+// PERCENTILE INDICATOR COMPONENT (Story 3)
+// ============================================================================
+
+const PercentileIndicator = ({
+  percentile,
+  historyLength,
+}: {
+  percentile: number | null;
+  historyLength: number;
+}) => {
+  // Building state - show progress bar
+  if (percentile === null) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: spacing.sm,
+          padding: `${spacing.sm} ${spacing.md}`,
+          backgroundColor: dsColors.bg.secondary,
+          borderRadius: radius.lg,
+          marginTop: spacing.md,
+          maxWidth: '400px',
+          margin: `${spacing.md} auto 0`,
+        }}
+      >
+        <div
+          style={{
+            flex: 1,
+            height: '4px',
+            backgroundColor: dsColors.border.subtle,
+            borderRadius: '2px',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              width: `${(historyLength / 30) * 100}%`,
+              height: '100%',
+              backgroundColor: dsColors.text.tertiary,
+              transition: 'width 0.3s ease',
+            }}
+          />
+        </div>
+        <span
+          style={{
+            fontSize: '12px',
+            fontWeight: 500,
+            lineHeight: 1.4,
+            letterSpacing: '0.02em',
+            color: dsColors.text.tertiary,
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {historyLength}/30 days
+        </span>
+      </div>
+    );
+  }
+
+  // Full percentile display
+  return (
+    <div
+      style={{
+        padding: `${spacing.sm} ${spacing.md}`,
+        backgroundColor: dsColors.bg.secondary,
+        borderRadius: radius.lg,
+        marginTop: spacing.md,
+        maxWidth: '400px',
+        margin: `${spacing.md} auto 0`,
+      }}
+    >
+      {/* Label Row */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'baseline',
+          marginBottom: spacing.xs,
+        }}
+      >
+        <span
+          style={{
+            fontSize: '12px',
+            fontWeight: 500,
+            lineHeight: 1.4,
+            letterSpacing: '0.02em',
+            color: dsColors.text.tertiary,
+          }}
+        >
+          30-Day Rank
+        </span>
+        <span
+          style={{
+            fontSize: '14px',
+            fontWeight: 500,
+            lineHeight: 1.4,
+            fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace",
+            fontVariantNumeric: 'tabular-nums',
+            color: dsColors.accent.gold,
+          }}
+        >
+          {formatOrdinal(percentile)} percentile
+        </span>
+      </div>
+
+      {/* Percentile Bar */}
+      <div
+        style={{
+          width: '100%',
+          height: '4px',
+          backgroundColor: dsColors.border.subtle,
+          borderRadius: '2px',
+          position: 'relative',
+        }}
+      >
+        {/* Marker Dot */}
+        <div
+          style={{
+            position: 'absolute',
+            left: `${percentile}%`,
+            top: '-2px',
+            width: '8px',
+            height: '8px',
+            borderRadius: '50%',
+            backgroundColor: dsColors.accent.gold,
+            transform: 'translateX(-50%)',
+            boxShadow: `0 0 0 2px ${dsColors.bg.secondary}`,
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
+// ============================================================================
 // REACT COMPONENT
 // ============================================================================
 
@@ -592,6 +728,12 @@ const MarketCompassV6 = () => {
               </div>
             );
           })()}
+
+          {/* 30-Day Percentile Indicator (Story 3) */}
+          <PercentileIndicator
+            percentile={getPercentile30d(compositeScore)}
+            historyLength={getHistoryLength()}
+          />
 
           <div style={{ fontSize: '12px', color: c.muted, marginTop: spacing.md, opacity: 0.6 }}>{data.updatedAt}</div>
         </main>

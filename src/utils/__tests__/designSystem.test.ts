@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getSignalStrength, colors } from '../designSystem';
+import { getSignalStrength, colors, getOrdinalSuffix, formatOrdinal } from '../designSystem';
 
 describe('getSignalStrength', () => {
   describe('Strong Defensive (0-30)', () => {
@@ -149,6 +149,93 @@ describe('getSignalStrength', () => {
         const result = getSignalStrength(score);
         expect(result.color).toMatch(/^#[0-9A-Fa-f]{6}$/);
       });
+    });
+  });
+});
+
+describe('Ordinal Formatting', () => {
+  describe('getOrdinalSuffix', () => {
+    it('returns "st" for 1', () => {
+      expect(getOrdinalSuffix(1)).toBe('st');
+    });
+
+    it('returns "nd" for 2', () => {
+      expect(getOrdinalSuffix(2)).toBe('nd');
+    });
+
+    it('returns "rd" for 3', () => {
+      expect(getOrdinalSuffix(3)).toBe('rd');
+    });
+
+    it('returns "th" for 4-10', () => {
+      expect(getOrdinalSuffix(4)).toBe('th');
+      expect(getOrdinalSuffix(5)).toBe('th');
+      expect(getOrdinalSuffix(10)).toBe('th');
+    });
+
+    it('returns "th" for 11, 12, 13 (special cases)', () => {
+      expect(getOrdinalSuffix(11)).toBe('th');
+      expect(getOrdinalSuffix(12)).toBe('th');
+      expect(getOrdinalSuffix(13)).toBe('th');
+    });
+
+    it('returns correct suffix for 21, 22, 23', () => {
+      expect(getOrdinalSuffix(21)).toBe('st');
+      expect(getOrdinalSuffix(22)).toBe('nd');
+      expect(getOrdinalSuffix(23)).toBe('rd');
+    });
+
+    it('returns "th" for 111, 112, 113 (special cases)', () => {
+      expect(getOrdinalSuffix(111)).toBe('th');
+      expect(getOrdinalSuffix(112)).toBe('th');
+      expect(getOrdinalSuffix(113)).toBe('th');
+    });
+
+    it('handles 0', () => {
+      expect(getOrdinalSuffix(0)).toBe('th');
+    });
+
+    it('handles percentile values 0-100', () => {
+      expect(getOrdinalSuffix(48)).toBe('th');
+      expect(getOrdinalSuffix(50)).toBe('th');
+      expect(getOrdinalSuffix(51)).toBe('st');
+      expect(getOrdinalSuffix(52)).toBe('nd');
+      expect(getOrdinalSuffix(53)).toBe('rd');
+      expect(getOrdinalSuffix(100)).toBe('th');
+    });
+  });
+
+  describe('formatOrdinal', () => {
+    it('formats 1 as "1st"', () => {
+      expect(formatOrdinal(1)).toBe('1st');
+    });
+
+    it('formats 2 as "2nd"', () => {
+      expect(formatOrdinal(2)).toBe('2nd');
+    });
+
+    it('formats 3 as "3rd"', () => {
+      expect(formatOrdinal(3)).toBe('3rd');
+    });
+
+    it('formats 11 as "11th"', () => {
+      expect(formatOrdinal(11)).toBe('11th');
+    });
+
+    it('formats 21 as "21st"', () => {
+      expect(formatOrdinal(21)).toBe('21st');
+    });
+
+    it('formats 48 as "48th"', () => {
+      expect(formatOrdinal(48)).toBe('48th');
+    });
+
+    it('formats 100 as "100th"', () => {
+      expect(formatOrdinal(100)).toBe('100th');
+    });
+
+    it('formats 0 as "0th"', () => {
+      expect(formatOrdinal(0)).toBe('0th');
     });
   });
 });
