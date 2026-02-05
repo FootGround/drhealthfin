@@ -1,7 +1,8 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useMarketCompassData } from '@/hooks/useMarketCompassData';
 import { MarketCompassRawData, Pillars } from '@/types/marketCompass';
 import { colors as dsColors, spacing, getSignalStrength } from '@/utils/designSystem';
+import { saveScore } from '@/utils/scoreHistory';
 
 // ============================================================================
 // SCORING FUNCTIONS — Pure functions that convert raw values to 0-100 scores
@@ -423,6 +424,16 @@ const MarketCompassV6 = () => {
 
   const pillars = useMemo(() => (data ? calculatePillarScores(data) : null), [data]);
   const compositeScore = useMemo(() => (pillars ? calculateCompositeScore(pillars) : 0), [pillars]);
+
+  // Save score to history for percentile calculations (Story 2)
+  useEffect(() => {
+    if (compositeScore && pillars) {
+      const pillarScores = Object.fromEntries(
+        Object.entries(pillars).map(([key, value]) => [key, value.score])
+      );
+      saveScore(compositeScore, pillarScores);
+    }
+  }, [compositeScore, pillars]);
 
   const getStatus = (score: number) => (score >= 65 ? 'healthy' : score >= 45 ? 'neutral' : 'stressed');
   const getStatusLabel = (score: number) => (score >= 65 ? 'Healthy' : score >= 45 ? 'Neutral' : 'Stressed');
