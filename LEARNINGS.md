@@ -146,6 +146,40 @@ Full State (historyLength >= 30):
 
 ---
 
+## Story 4: Enhanced Raw→Score Display (Completed 2026-02-05)
+
+### What Was Built
+- Updated signal card layout in details view
+- Combined raw value + score on single line with arrow separator
+- Monospace font for tabular numeric alignment
+
+### Architecture Decisions
+1. **Single template change** - All 18 signals updated via one code change
+2. **Flex layout with gap** - Clean alignment without manual spacing
+3. **Color hierarchy** - Primary for raw value, muted for score
+
+### Files Changed
+```
+src/components/MarketCompassV6.tsx      (MODIFIED - +24 lines)
+```
+
+### Before/After
+```
+Before:              After:
+┌──────────┐         ┌──────────┐
+│   18.50  │         │ 18.50 → 70│
+│  → 70 pts│         │    +0.5% │
+│   +0.5%  │         └──────────┘
+└──────────┘
+```
+
+### Gotchas & Tips
+- **Flex baseline alignment** - Use `alignItems: 'baseline'` for text alignment
+- **Gap vs margin** - `gap: spacing.sm` cleaner than individual margins
+- **Remove "pts" suffix** - Cleaner look, score context is obvious
+
+---
+
 ## Codebase Patterns
 
 ### Component Structure
