@@ -887,14 +887,35 @@ const MarketCompassV6 = () => {
                         <div style={{ fontSize: '11px', color: c.muted }}>{signal.threshold}</div>
                       </div>
                       <div style={{ textAlign: 'right', marginLeft: '12px' }}>
-                        <div style={{ fontSize: '14px', fontWeight: 500, fontVariantNumeric: 'tabular-nums' }}>{signal.displayValue}</div>
+                        {/* Raw → Score Row (Story 4) */}
+                        <div style={{
+                          display: 'flex',
+                          alignItems: 'baseline',
+                          justifyContent: 'flex-end',
+                          gap: spacing.sm,
+                          fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace",
+                          fontVariantNumeric: 'tabular-nums',
+                        }}>
+                          <span style={{ fontSize: '14px', fontWeight: 500, color: c.text }}>
+                            {signal.displayValue}
+                          </span>
+                          <span style={{ fontSize: '13px', color: c.muted }}>→</span>
+                          <span style={{ fontSize: '14px', fontWeight: 500, color: c.muted }}>
+                            {signal.score}
+                          </span>
+                        </div>
+                        {/* Change Row */}
                         {signal.change !== null && (
-                          <div style={{ fontSize: '10px', color: signal.change >= 0 ? c.positive : c.negative, fontVariantNumeric: 'tabular-nums' }}>
+                          <div style={{
+                            fontSize: '10px',
+                            color: signal.change >= 0 ? c.positive : c.negative,
+                            fontVariantNumeric: 'tabular-nums',
+                            marginTop: spacing.xs,
+                          }}>
                             {signal.change >= 0 ? '+' : ''}
                             {signal.change.toFixed(1)}%
                           </div>
                         )}
-                        <div style={{ fontSize: '10px', color: c.muted, marginTop: '2px' }}>→ {signal.score} pts</div>
                       </div>
                     </div>
                   ))}
