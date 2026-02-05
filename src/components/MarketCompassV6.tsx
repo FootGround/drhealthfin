@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useMarketCompassData } from '@/hooks/useMarketCompassData';
 import { MarketCompassRawData, Pillars } from '@/types/marketCompass';
+import { colors as dsColors, spacing, getSignalStrength } from '@/utils/designSystem';
 
 // ============================================================================
 // SCORING FUNCTIONS — Pure functions that convert raw values to 0-100 scores
@@ -382,6 +383,35 @@ const calculateCompositeScore = (pillars: Pillars): number => {
 };
 
 // ============================================================================
+// SIGNAL STRENGTH BAR COMPONENT
+// ============================================================================
+
+const SignalStrengthBar = ({ level, color }: { level: 1 | 2 | 3; color: string }) => (
+  <div
+    style={{
+      display: 'flex',
+      gap: '3px',
+      alignItems: 'flex-end',
+    }}
+    role="img"
+    aria-hidden="true"
+  >
+    {[1, 2, 3].map((i) => (
+      <div
+        key={i}
+        style={{
+          width: '4px',
+          height: i <= level ? '12px' : '8px',
+          borderRadius: '2px',
+          backgroundColor: i <= level ? color : dsColors.border.subtle,
+          transition: 'all 0.2s ease',
+        }}
+      />
+    ))}
+  </div>
+);
+
+// ============================================================================
 // REACT COMPONENT
 // ============================================================================
 
@@ -485,7 +515,74 @@ const MarketCompassV6 = () => {
           <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: c.muted, marginTop: '12px' }}>
             {getStatusLabel(compositeScore)}
           </div>
-          <div style={{ fontSize: '12px', color: c.muted, marginTop: '8px', opacity: 0.6 }}>{data.updatedAt}</div>
+
+          {/* Signal Strength Indicator */}
+          {(() => {
+            const signalStrength = getSignalStrength(compositeScore);
+            return (
+              <div
+                style={{
+                  marginTop: spacing.md,
+                  textAlign: 'center',
+                  maxWidth: '400px',
+                  padding: `0 ${spacing.md}`,
+                }}
+                role="status"
+                aria-label={`Signal strength: ${signalStrength.label}, ${signalStrength.description}`}
+              >
+                {/* Signal Strength Bar + Label Row */}
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: spacing.sm,
+                  }}
+                >
+                  <SignalStrengthBar level={signalStrength.level} color={signalStrength.color} />
+                  <span
+                    style={{
+                      fontSize: '14px',
+                      fontWeight: 400,
+                      lineHeight: 1.5,
+                      color: signalStrength.color,
+                    }}
+                  >
+                    {signalStrength.label}
+                  </span>
+                </div>
+
+                {/* Description */}
+                <div
+                  style={{
+                    fontSize: '13px',
+                    fontWeight: 400,
+                    lineHeight: 1.5,
+                    color: dsColors.text.secondary,
+                    marginTop: spacing.xs,
+                  }}
+                >
+                  {signalStrength.description}
+                </div>
+
+                {/* Frequency */}
+                <div
+                  style={{
+                    fontSize: '12px',
+                    fontWeight: 500,
+                    lineHeight: 1.4,
+                    letterSpacing: '0.02em',
+                    color: dsColors.text.tertiary,
+                    marginTop: spacing.xs,
+                  }}
+                >
+                  Occurs {signalStrength.frequency}
+                </div>
+              </div>
+            );
+          })()}
+
+          <div style={{ fontSize: '12px', color: c.muted, marginTop: spacing.md, opacity: 0.6 }}>{data.updatedAt}</div>
         </main>
 
         {/* Pillar Summary Bar */}
