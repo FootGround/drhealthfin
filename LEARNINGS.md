@@ -101,6 +101,51 @@ interface ScoreEntry {
 
 ---
 
+## Story 3: 30-Day Percentile Display (Completed 2026-02-05)
+
+### What Was Built
+- **Ordinal Helpers** in `designSystem.ts`: `getOrdinalSuffix()`, `formatOrdinal()`
+- **PercentileIndicator**: Component with two states (building vs full)
+- **Integration**: Added below Signal Strength on home view
+
+### Architecture Decisions
+1. **Two-state component** - Building state shows progress, full state shows percentile
+2. **Gold accent color** (#EAB308) for percentile - distinct from signal colors
+3. **Marker dot on bar** - visual position indicator at percentile %
+
+### Testing Approach
+- **17 new tests** for ordinal formatting
+- Tests cover: 1st, 2nd, 3rd, 11th/12th/13th (special), 21st/22nd/23rd, 100th
+
+### Files Changed
+```
+src/utils/designSystem.ts               (MODIFIED - +23 lines)
+src/utils/__tests__/designSystem.test.ts (MODIFIED - +89 lines)
+src/components/MarketCompassV6.tsx      (MODIFIED - +143 lines)
+```
+
+### Gotchas & Tips
+- **11/12/13 special case**: Always use "th" even though they end in 1/2/3
+- **CSS position**: Marker dot uses `left: ${percentile}%` + `transform: translateX(-50%)`
+- **Box shadow ring**: Creates ring effect around marker dot
+
+### Component States
+```
+Building State (historyLength < 30):
+┌──────────────────────────────────────────┐
+│  ━━━━━━━━━━━━━━━━━━━━━━━━               │
+│                           15/30 days     │
+└──────────────────────────────────────────┘
+
+Full State (historyLength >= 30):
+┌──────────────────────────────────────────┐
+│  30-Day Rank               48th percentile│
+│  ━━━━━━━━━━━━━━━━●━━━━━━━━━━━━━━━━━━━━━ │
+└──────────────────────────────────────────┘
+```
+
+---
+
 ## Codebase Patterns
 
 ### Component Structure
