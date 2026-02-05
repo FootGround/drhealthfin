@@ -45,6 +45,62 @@ src/components/MarketCompassV6.tsx (MODIFIED - +98 lines)
 
 ---
 
+## Story 2: Data Persistence Infrastructure (Completed 2026-02-05)
+
+### What Was Built
+- **scoreHistory.ts** (`src/utils/scoreHistory.ts`): localStorage persistence for historical scores
+- **saveScore()**: Saves composite + pillar scores, handles same-day updates
+- **getPercentile30d()**: Calculates 30-day percentile ranking
+- **getHistoryLength()**: Returns days of history (for "Building X/30 days" UI)
+- **Integration**: Auto-save via useEffect in MarketCompassV6
+
+### Architecture Decisions
+1. **localStorage over IndexedDB** - simpler, sufficient for 60 days of data
+2. **Date as string key** (`YYYY-MM-DD`) - avoids timezone issues
+3. **Newest-first sorting** - faster access to recent data for percentile
+4. **Graceful degradation** - quota exceeded → trim to 30 days → silently fail
+
+### Testing Approach
+- **30 unit tests** covering all functions and edge cases
+- **Mock localStorage** with custom implementation (Vitest doesn't have jsdom by default)
+- **vi.useFakeTimers()** for date manipulation
+- Tests verify: save, replace, trim, percentile calculation, error handling
+
+### Files Changed
+```
+src/utils/scoreHistory.ts               (NEW - 133 lines)
+src/utils/__tests__/scoreHistory.test.ts (NEW - 340 lines)
+src/components/MarketCompassV6.tsx      (MODIFIED - +12 lines)
+```
+
+### Gotchas & Tips
+- **localStorage mock**: Must create custom mock object and assign to `global.localStorage`
+- **Date timezone**: Use `toISOString().split('T')[0]` for consistent date strings
+- **Vitest fake timers**: Call `vi.setSystemTime(new Date(...))` to control Date.now()
+- **Error handling**: Wrap all localStorage access in try/catch
+
+### API Reference
+```typescript
+saveScore(compositeScore: number, pillarScores: Record<string, number>): void
+getPercentile30d(todayScore: number): number | null  // null if <30 days
+getHistoryLength(): number
+getLast30Scores(): number[]  // Chronological order (oldest first)
+clearHistory(): void
+```
+
+### localStorage Structure
+```typescript
+// Key: 'marketCompass_scoreHistory'
+// Value: Array<ScoreEntry> (max 60 entries, newest first)
+interface ScoreEntry {
+  date: string;    // 'YYYY-MM-DD'
+  composite: number;
+  pillars: Record<string, number>;
+}
+```
+
+---
+
 ## Codebase Patterns
 
 ### Component Structure
@@ -74,7 +130,7 @@ src/components/MarketCompassV6.tsx (MODIFIED - +98 lines)
 
 | Story | Depends On | Notes |
 |-------|------------|-------|
-| 3. Percentile | Story 2 (Data Persistence) | Wait for localStorage implementation |
+| 3. Percentile | Story 2 (Data Persistence) | ✅ Ready - Story 2 complete |
 | 6. Formula UI | Story 5 (Formula Infrastructure) | Need formulas documented first |
 
 ---
