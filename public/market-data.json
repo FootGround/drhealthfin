@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-06T21:10:27.480Z",
+  "lastUpdated": "2026-02-06T21:26:16.131Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -294,9 +294,9 @@
     },
     "NVDA": {
       "ticker": "NVDA",
-      "currentPrice": 185.245,
-      "change": 13.365000000000009,
-      "changePercent": 7.7757737956714035,
+      "currentPrice": 185.41,
+      "change": 13.530000000000001,
+      "changePercent": 7.871771003025367,
       "previousClose": 171.88,
       "high": 187,
       "low": 174.6,
@@ -304,9 +304,9 @@
     },
     "AMZN": {
       "ticker": "AMZN",
-      "currentPrice": 210.275,
-      "change": -12.414999999999992,
-      "changePercent": -5.575014594279039,
+      "currentPrice": 210.32,
+      "change": -12.370000000000005,
+      "changePercent": -5.5548071309892695,
       "previousClose": 222.69,
       "high": 211.44,
       "low": 200.31,
