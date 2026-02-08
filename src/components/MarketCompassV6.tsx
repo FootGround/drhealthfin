@@ -5,6 +5,7 @@ import { colors as dsColors, spacing, radius, getSignalStrength, formatOrdinal }
 import { saveScore, getPercentile30d, getHistoryLength } from '@/utils/scoreHistory';
 import { formulaExplanations } from '@/utils/formulaExplanations';
 import { categorizePillars, getInterpretation } from '@/utils/pillarAgreement';
+import { trackEvent } from '@/utils/analytics';
 
 // ============================================================================
 // SCORING FUNCTIONS — Pure functions that convert raw values to 0-100 scores
@@ -842,6 +843,33 @@ const MarketCompassV6 = () => {
     }
   }, [compositeScore, pillars]);
 
+  // Analytics: track signal strength view (Story 8)
+  useEffect(() => {
+    if (compositeScore && view === 'home') {
+      trackEvent('signal_strength_viewed', {
+        compositeScore,
+        signalStrength: getSignalStrength(compositeScore).label,
+      });
+      const percentile = getPercentile30d(compositeScore);
+      if (percentile !== null) {
+        trackEvent('percentile_viewed', { compositeScore, percentile });
+      }
+    }
+  }, [compositeScore, view]);
+
+  // Analytics: track pillar agreement view (Story 8)
+  useEffect(() => {
+    if (view === 'details' && pillars) {
+      const cats = categorizePillars(pillars);
+      trackEvent('pillar_agreement_viewed', {
+        compositeScore,
+        bullishCount: cats.bullish.length,
+        neutralCount: cats.neutral.length,
+        bearishCount: cats.bearish.length,
+      });
+    }
+  }, [view, pillars, compositeScore]);
+
   const getStatus = (score: number) => (score >= 65 ? 'healthy' : score >= 45 ? 'neutral' : 'stressed');
   const getStatusLabel = (score: number) => (score >= 65 ? 'Healthy' : score >= 45 ? 'Neutral' : 'Stressed');
   const status = getStatus(compositeScore);
@@ -1132,7 +1160,10 @@ const MarketCompassV6 = () => {
           return (
             <div key={key} style={{ borderBottom: `1px solid ${c.border}`, animation: `fadeUp 0.3s ease-out ${i * 0.03}s both` }}>
               <button
-                onClick={() => setExpandedPillar(isExpanded ? null : key)}
+                onClick={() => {
+                  if (!isExpanded) trackEvent('pillar_expanded', { pillarKey: key, pillarScore: pillar.score, compositeScore });
+                  setExpandedPillar(isExpanded ? null : key);
+                }}
                 style={{ width: '100%', padding: '16px 0', background: 'none', border: 'none', color: c.text, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -1162,7 +1193,10 @@ const MarketCompassV6 = () => {
                               <span style={{ fontSize: '9px', color: c.muted, background: c.border, padding: '2px 4px', borderRadius: '3px' }}>{signal.ticker}</span>
                               {formulaKey && (
                                 <button
-                                  onClick={() => setExpandedFormula(isFormulaOpen ? null : formulaKey)}
+                                  onClick={() => {
+                                    if (!isFormulaOpen) trackEvent('formula_tooltip_opened', { signalKey: formulaKey, compositeScore });
+                                    setExpandedFormula(isFormulaOpen ? null : formulaKey);
+                                  }}
                                   aria-label={`${isFormulaOpen ? 'Hide' : 'Show'} formula for ${signal.name}`}
                                   aria-expanded={isFormulaOpen}
                                   style={{

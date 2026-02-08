@@ -212,6 +212,85 @@ src/utils/__tests__/formulaExplanations.test.ts (NEW - ~200 lines)
 
 ---
 
+## Story 6: Formula Tooltip UI (Completed 2026-02-08)
+
+### What Was Built
+- **InfoIcon**: 14px SVG info icon with opacity hover states
+- **FormulaCard**: Expandable card showing formula, raw/score grid, rationale
+- **signalToFormulaKey mapping**: Maps 18 signal names to formula keys
+- **Accordion behavior**: Only one formula card open at a time
+- **slideDown animation**: 200ms ease-out enter animation
+
+### Architecture Decisions
+1. **Name-based mapping** over adding `key` field to Signal interface — avoids touching type definitions
+2. **FormulaCard as standalone component** — receives signalKey, looks up formula data itself
+3. **`expandedFormula` state** — simple string|null toggle, same pattern as expandedPillar
+
+### Files Changed
+```
+src/components/MarketCompassV6.tsx (MODIFIED - +240 lines)
+```
+
+### Gotchas & Tips
+- **Unused prop error**: FormulaCard initially received `c` prop but used `dsColors` — remove unused props
+- **Call site must match signature**: Removing prop from type requires removing from JSX call too
+
+---
+
+## Story 7: Pillar Agreement Summary (Completed 2026-02-08)
+
+### What Was Built
+- **pillarAgreement.ts** (`src/utils/pillarAgreement.ts`): Categorization and interpretation logic
+- **categorizePillars()**: Groups 6 pillars into bullish (≥60), neutral (45-59), bearish (<45)
+- **getInterpretation()**: Auto-generates summary text based on distribution
+- **PillarAgreement component**: Flex layout with status dots and pillar entries
+- **21 unit tests** covering all categorization and interpretation paths
+
+### Architecture Decisions
+1. **Separate utility file** for testability — follows existing pattern
+2. **flexWrap layout** — responsive: columns on desktop, stacks on mobile
+3. **Interpretation thresholds**: 5+ bullish = strong, 4 = leaning, else mixed
+
+### Files Changed
+```
+src/utils/pillarAgreement.ts                   (NEW - 40 lines)
+src/utils/__tests__/pillarAgreement.test.ts    (NEW - 185 lines)
+src/components/MarketCompassV6.tsx             (MODIFIED - +90 lines)
+```
+
+### Gotchas & Tips
+- **Score 48 is neutral, not bearish** — boundary is 45, not 50
+- **Import conflicts**: Don't declare local functions that shadow imports
+
+---
+
+## Story 8: Analytics Instrumentation (Completed 2026-02-08)
+
+### What Was Built
+- **analytics.ts** (`src/utils/analytics.ts`): Privacy-respecting event tracking
+- **trackEvent()**: Respects DNT, console.log in dev, forwards to Plausible/GA4 in prod
+- **5 tracked events**: signal_strength_viewed, percentile_viewed, formula_tooltip_opened, pillar_expanded, pillar_agreement_viewed
+- **8 unit tests** covering DNT, error handling, various property types
+
+### Architecture Decisions
+1. **Separate utility** — not coupled to any specific analytics provider
+2. **DNT first** — check navigator.doNotTrack before any tracking
+3. **Silent failures** — analytics should never break the app
+4. **Dev console logging** — useful for debugging without analytics service
+
+### Files Changed
+```
+src/utils/analytics.ts                    (NEW - 62 lines)
+src/utils/__tests__/analytics.test.ts     (NEW - 87 lines)
+src/components/MarketCompassV6.tsx        (MODIFIED - +25 lines)
+```
+
+### Gotchas & Tips
+- **navigator not defined in Vitest** — must mock `globalThis.navigator` and `globalThis.window`
+- **process.env.NODE_ENV** — use `typeof process !== 'undefined'` guard for SSR safety
+
+---
+
 ## Codebase Patterns
 
 ### Component Structure
