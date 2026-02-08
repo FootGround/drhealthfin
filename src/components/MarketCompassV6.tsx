@@ -4,6 +4,7 @@ import { MarketCompassRawData, Pillars } from '@/types/marketCompass';
 import { colors as dsColors, spacing, radius, getSignalStrength, formatOrdinal } from '@/utils/designSystem';
 import { saveScore, getPercentile30d, getHistoryLength } from '@/utils/scoreHistory';
 import { formulaExplanations } from '@/utils/formulaExplanations';
+import { categorizePillars, getInterpretation } from '@/utils/pillarAgreement';
 
 // ============================================================================
 // SCORING FUNCTIONS — Pure functions that convert raw values to 0-100 scores
@@ -712,6 +713,112 @@ const FormulaCard = ({
 };
 
 // ============================================================================
+// PILLAR AGREEMENT COMPONENT (Story 7)
+// ============================================================================
+
+const pillarAgreementLabels: Record<string, string> = {
+  direction: 'Direction',
+  breadth: 'Breadth',
+  volatility: 'Volatility',
+  credit: 'Credit',
+  sentiment: 'Sentiment',
+  global: 'Global',
+};
+
+const PillarAgreement = ({ pillars, c }: { pillars: Pillars; c: { dim: string; border: string; muted: string } }) => {
+  const categories = categorizePillars(pillars);
+  const interpretation = getInterpretation(categories);
+
+  const dotColors = {
+    bullish: dsColors.signal.constructive,
+    neutral: dsColors.text.tertiary,
+    bearish: dsColors.signal.strongDefense,
+  };
+
+  const CategoryColumn = ({
+    status,
+    label,
+    entries,
+  }: {
+    status: 'bullish' | 'neutral' | 'bearish';
+    label: string;
+    entries: Array<[string, number]>;
+  }) => {
+    if (entries.length === 0) return null;
+    return (
+      <div style={{ flex: 1, minWidth: '120px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: spacing.xs, marginBottom: spacing.xs }}>
+          <div
+            style={{
+              width: '8px',
+              height: '8px',
+              borderRadius: '50%',
+              backgroundColor: dotColors[status],
+              flexShrink: 0,
+            }}
+          />
+          <span style={{ fontSize: '14px', fontWeight: 500, fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace", color: dsColors.text.primary }}>
+            {entries.length}
+          </span>
+          <span style={{ fontSize: '13px', fontWeight: 400, color: dsColors.text.tertiary }}>
+            {label}
+          </span>
+        </div>
+        {entries.map(([key, score]) => (
+          <div
+            key={key}
+            style={{
+              fontSize: '13px',
+              color: dsColors.text.secondary,
+              paddingLeft: spacing.md,
+              marginTop: spacing.xs,
+            }}
+          >
+            {pillarAgreementLabels[key]} · {score}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  return (
+    <section style={{ margin: '20px', padding: spacing.md, background: c.dim, borderRadius: radius.lg }}>
+      <div
+        style={{
+          fontSize: '10px',
+          fontWeight: 600,
+          color: c.muted,
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase' as const,
+          marginBottom: spacing.md,
+        }}
+      >
+        Pillar Agreement
+      </div>
+
+      <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: spacing.lg, marginBottom: spacing.md }}>
+        <CategoryColumn status="bullish" label="bullish" entries={categories.bullish} />
+        <CategoryColumn status="neutral" label="neutral" entries={categories.neutral} />
+        <CategoryColumn status="bearish" label="bearish" entries={categories.bearish} />
+      </div>
+
+      <div
+        style={{
+          fontSize: '13px',
+          fontWeight: 400,
+          lineHeight: 1.5,
+          color: dsColors.text.secondary,
+          paddingTop: spacing.sm,
+          borderTop: `1px solid ${dsColors.border.subtle}`,
+        }}
+      >
+        {interpretation}
+      </div>
+    </section>
+  );
+};
+
+// ============================================================================
 // REACT COMPONENT
 // ============================================================================
 
@@ -1130,6 +1237,9 @@ const MarketCompassV6 = () => {
           );
         })}
       </section>
+
+      {/* Pillar Agreement (Story 7) */}
+      <PillarAgreement pillars={pillars} c={c} />
 
       {/* Calculation Transparency */}
       <section style={{ margin: '20px', padding: '16px', background: c.dim, borderRadius: '8px' }}>
