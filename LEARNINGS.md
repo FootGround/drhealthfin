@@ -180,6 +180,38 @@ Before:              After:
 
 ---
 
+## Story 5: Formula Tooltip Infrastructure (Completed 2026-02-08)
+
+### What Was Built
+- **formulaExplanations.ts** (`src/utils/formulaExplanations.ts`): Comprehensive formula documentation for all 18 signals
+- **FormulaExplanation interface**: name, formula, bounds, thresholds[], rationale
+- **getFormulaExplanation()**: Formatted multi-line explanation with interpolated values
+- **getFormula()**, **getAllSignalKeys()**: Helper accessors
+
+### Architecture Decisions
+1. **Separate data file** - Decoupled from UI; formulas as static data, not embedded in component
+2. **Organized by pillar** - Direction, Breadth, Volatility, Credit, Sentiment, Global
+3. **Threshold arrays** - Structured data for future grid/table rendering in UI
+4. **String-based formulas** - Human-readable, not executable; transparency over precision
+
+### Testing Approach
+- **27 unit tests** covering completeness, structure, and formatting
+- Tests verify: all 18 keys present, required fields, threshold arrays non-empty, rationale length
+- Key test: `getFormulaExplanation()` returns formatted string for every signal
+
+### Files Changed
+```
+src/utils/formulaExplanations.ts               (NEW - 386 lines)
+src/utils/__tests__/formulaExplanations.test.ts (NEW - ~200 lines)
+```
+
+### Gotchas & Tips
+- **TypeScript unused variables**: Use `_` prefix for destructured unused vars (`[_key, formula]`)
+- **Formula key mapping**: Keys in formulaExplanations must match what UI will use to look up formulas
+- **18 signals confirmed**: spyVs200MA, qqqVs200MA, iwmVs200MA, advanceDeclineRatio, percentAbove200MA, newHighsVsLows, vix, putCallRatio, vixTermStructure, yieldCurve10Y2Y, highYieldSpread, investmentGradeSpread, aaiiBulls, aaiiBears, fearGreedIndex, msciWorldVs50MA, vstoxx, globalPMI
+
+---
+
 ## Codebase Patterns
 
 ### Component Structure
@@ -210,7 +242,7 @@ Before:              After:
 | Story | Depends On | Notes |
 |-------|------------|-------|
 | 3. Percentile | Story 2 (Data Persistence) | ✅ Ready - Story 2 complete |
-| 6. Formula UI | Story 5 (Formula Infrastructure) | Need formulas documented first |
+| 6. Formula UI | Story 5 (Formula Infrastructure) | ✅ Ready - Story 5 complete |
 
 ---
 

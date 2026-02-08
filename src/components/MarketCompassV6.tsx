@@ -3,6 +3,7 @@ import { useMarketCompassData } from '@/hooks/useMarketCompassData';
 import { MarketCompassRawData, Pillars } from '@/types/marketCompass';
 import { colors as dsColors, spacing, radius, getSignalStrength, formatOrdinal } from '@/utils/designSystem';
 import { saveScore, getPercentile30d, getHistoryLength } from '@/utils/scoreHistory';
+import { formulaExplanations } from '@/utils/formulaExplanations';
 
 // ============================================================================
 // SCORING FUNCTIONS — Pure functions that convert raw values to 0-100 scores
@@ -549,6 +550,168 @@ const PercentileIndicator = ({
 };
 
 // ============================================================================
+// SIGNAL NAME → FORMULA KEY MAPPING (Story 6)
+// ============================================================================
+
+const signalToFormulaKey: Record<string, string> = {
+  'S&P 500 vs 200MA': 'spyVs200MA',
+  'Nasdaq vs 200MA': 'qqqVs200MA',
+  'Russell 2000 vs 200MA': 'iwmVs200MA',
+  'Advance/Decline': 'advanceDeclineRatio',
+  '% Above 200-Day MA': 'percentAbove200MA',
+  'New Highs vs Lows': 'newHighsVsLows',
+  'VIX': 'vix',
+  'Put/Call Ratio': 'putCallRatio',
+  'VIX Term Structure': 'vixTermStructure',
+  'Yield Curve (10Y-2Y)': 'yieldCurve10Y2Y',
+  'High Yield Spread': 'highYieldSpread',
+  'IG Spread': 'investmentGradeSpread',
+  'AAII Bulls': 'aaiiBulls',
+  'AAII Bears': 'aaiiBears',
+  'Fear & Greed': 'fearGreedIndex',
+  'MSCI World': 'msciWorldVs50MA',
+  'VSTOXX': 'vstoxx',
+  'Global PMI': 'globalPMI',
+};
+
+// ============================================================================
+// INFO ICON COMPONENT (Story 6)
+// ============================================================================
+
+const InfoIcon = ({ size = 14 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+  >
+    <circle cx="8" cy="8" r="7" />
+    <path d="M8 7v4M8 5v.5" />
+  </svg>
+);
+
+// ============================================================================
+// FORMULA CARD COMPONENT (Story 6)
+// ============================================================================
+
+const FormulaCard = ({
+  signalKey,
+  rawValue,
+  score,
+}: {
+  signalKey: string;
+  rawValue: string | number | boolean;
+  score: number;
+}) => {
+  const formula = formulaExplanations[signalKey];
+  if (!formula) return null;
+
+  const displayRaw =
+    typeof rawValue === 'boolean' ? (rawValue ? 'Contango' : 'Backwardation') : rawValue;
+
+  return (
+    <div
+      style={{
+        padding: spacing.md,
+        backgroundColor: dsColors.bg.tertiary,
+        borderRadius: radius.lg,
+        border: `1px solid ${dsColors.border.subtle}`,
+        marginTop: spacing.sm,
+      }}
+    >
+      {/* Section Label */}
+      <div
+        style={{
+          fontSize: '12px',
+          fontWeight: 500,
+          lineHeight: 1.4,
+          letterSpacing: '0.02em',
+          color: dsColors.text.tertiary,
+          marginBottom: spacing.sm,
+        }}
+      >
+        FORMULA
+      </div>
+
+      {/* Formula Code Block */}
+      <div
+        style={{
+          fontSize: '13px',
+          fontWeight: 500,
+          lineHeight: 1.4,
+          fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace",
+          color: dsColors.text.secondary,
+          padding: spacing.sm,
+          backgroundColor: dsColors.bg.primary,
+          borderRadius: radius.md,
+          marginBottom: spacing.md,
+        }}
+      >
+        {formula.formula}
+      </div>
+
+      {/* Raw / Score Grid */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: spacing.sm,
+          marginBottom: spacing.md,
+        }}
+      >
+        <div>
+          <div style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', color: dsColors.text.tertiary }}>
+            Raw
+          </div>
+          <div
+            style={{
+              fontSize: '14px',
+              fontWeight: 500,
+              fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace",
+              color: dsColors.text.primary,
+            }}
+          >
+            {displayRaw}
+          </div>
+        </div>
+        <div>
+          <div style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', color: dsColors.text.tertiary }}>
+            Score
+          </div>
+          <div
+            style={{
+              fontSize: '14px',
+              fontWeight: 500,
+              fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace",
+              color: dsColors.text.primary,
+            }}
+          >
+            {score}
+          </div>
+        </div>
+      </div>
+
+      {/* Rationale */}
+      <div
+        style={{
+          fontSize: '13px',
+          fontWeight: 400,
+          lineHeight: 1.5,
+          color: dsColors.text.secondary,
+          paddingTop: spacing.sm,
+          borderTop: `1px solid ${dsColors.border.subtle}`,
+        }}
+      >
+        {formula.rationale}
+      </div>
+    </div>
+  );
+};
+
+// ============================================================================
 // REACT COMPONENT
 // ============================================================================
 
@@ -557,6 +720,7 @@ const MarketCompassV6 = () => {
   const [view, setView] = useState<'home' | 'details'>('home');
   const [isDark, setIsDark] = useState(true);
   const [expandedPillar, setExpandedPillar] = useState<string | null>(null);
+  const [expandedFormula, setExpandedFormula] = useState<string | null>(null);
 
   const pillars = useMemo(() => (data ? calculatePillarScores(data) : null), [data]);
   const compositeScore = useMemo(() => (pillars ? calculateCompositeScore(pillars) : 0), [pillars]);
@@ -813,6 +977,7 @@ const MarketCompassV6 = () => {
     <div style={{ minHeight: '100vh', background: c.bg, color: c.text, fontFamily: "'SF Pro Display', -apple-system, system-ui, sans-serif" }}>
       <style>{`
         @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         button { font-family: inherit; cursor: pointer; }
       `}</style>
@@ -877,48 +1042,88 @@ const MarketCompassV6 = () => {
 
               {isExpanded && (
                 <div style={{ paddingBottom: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  {pillar.signals.map((signal: any, j: number) => (
-                    <div key={j} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', background: c.dim, borderRadius: '8px' }}>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: '13px', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '2px' }}>
-                          {signal.name}
-                          <span style={{ fontSize: '9px', color: c.muted, background: c.border, padding: '2px 4px', borderRadius: '3px' }}>{signal.ticker}</span>
+                  {pillar.signals.map((signal: any, j: number) => {
+                    const formulaKey = signalToFormulaKey[signal.name];
+                    const isFormulaOpen = expandedFormula === formulaKey;
+
+                    return (
+                      <div key={j}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', background: c.dim, borderRadius: '8px' }}>
+                          <div style={{ flex: 1 }}>
+                            <div style={{ fontSize: '13px', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '2px' }}>
+                              {signal.name}
+                              <span style={{ fontSize: '9px', color: c.muted, background: c.border, padding: '2px 4px', borderRadius: '3px' }}>{signal.ticker}</span>
+                              {formulaKey && (
+                                <button
+                                  onClick={() => setExpandedFormula(isFormulaOpen ? null : formulaKey)}
+                                  aria-label={`${isFormulaOpen ? 'Hide' : 'Show'} formula for ${signal.name}`}
+                                  aria-expanded={isFormulaOpen}
+                                  style={{
+                                    background: 'none',
+                                    border: 'none',
+                                    color: dsColors.text.tertiary,
+                                    opacity: isFormulaOpen ? 1 : 0.5,
+                                    cursor: 'pointer',
+                                    padding: spacing.xs,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    transition: 'opacity 0.15s ease',
+                                  }}
+                                  onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.8'; }}
+                                  onMouseLeave={(e) => { e.currentTarget.style.opacity = isFormulaOpen ? '1' : '0.5'; }}
+                                >
+                                  <InfoIcon size={14} />
+                                </button>
+                              )}
+                            </div>
+                            <div style={{ fontSize: '11px', color: c.muted }}>{signal.threshold}</div>
+                          </div>
+                          <div style={{ textAlign: 'right', marginLeft: '12px' }}>
+                            {/* Raw → Score Row (Story 4) */}
+                            <div style={{
+                              display: 'flex',
+                              alignItems: 'baseline',
+                              justifyContent: 'flex-end',
+                              gap: spacing.sm,
+                              fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace",
+                              fontVariantNumeric: 'tabular-nums',
+                            }}>
+                              <span style={{ fontSize: '14px', fontWeight: 500, color: c.text }}>
+                                {signal.displayValue}
+                              </span>
+                              <span style={{ fontSize: '13px', color: c.muted }}>→</span>
+                              <span style={{ fontSize: '14px', fontWeight: 500, color: c.muted }}>
+                                {signal.score}
+                              </span>
+                            </div>
+                            {/* Change Row */}
+                            {signal.change !== null && (
+                              <div style={{
+                                fontSize: '10px',
+                                color: signal.change >= 0 ? c.positive : c.negative,
+                                fontVariantNumeric: 'tabular-nums',
+                                marginTop: spacing.xs,
+                              }}>
+                                {signal.change >= 0 ? '+' : ''}
+                                {signal.change.toFixed(1)}%
+                              </div>
+                            )}
+                          </div>
                         </div>
-                        <div style={{ fontSize: '11px', color: c.muted }}>{signal.threshold}</div>
-                      </div>
-                      <div style={{ textAlign: 'right', marginLeft: '12px' }}>
-                        {/* Raw → Score Row (Story 4) */}
-                        <div style={{
-                          display: 'flex',
-                          alignItems: 'baseline',
-                          justifyContent: 'flex-end',
-                          gap: spacing.sm,
-                          fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace",
-                          fontVariantNumeric: 'tabular-nums',
-                        }}>
-                          <span style={{ fontSize: '14px', fontWeight: 500, color: c.text }}>
-                            {signal.displayValue}
-                          </span>
-                          <span style={{ fontSize: '13px', color: c.muted }}>→</span>
-                          <span style={{ fontSize: '14px', fontWeight: 500, color: c.muted }}>
-                            {signal.score}
-                          </span>
-                        </div>
-                        {/* Change Row */}
-                        {signal.change !== null && (
-                          <div style={{
-                            fontSize: '10px',
-                            color: signal.change >= 0 ? c.positive : c.negative,
-                            fontVariantNumeric: 'tabular-nums',
-                            marginTop: spacing.xs,
-                          }}>
-                            {signal.change >= 0 ? '+' : ''}
-                            {signal.change.toFixed(1)}%
+
+                        {/* Formula Card (Story 6) */}
+                        {isFormulaOpen && formulaKey && (
+                          <div style={{ animation: 'slideDown 0.2s ease-out' }}>
+                            <FormulaCard
+                              signalKey={formulaKey}
+                              rawValue={signal.rawValue}
+                              score={signal.score}
+                            />
                           </div>
                         )}
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
             </div>
