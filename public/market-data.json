@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-11T21:14:53.176Z",
+  "lastUpdated": "2026-02-11T21:19:02.898Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -132,9 +132,9 @@
     },
     "IEF": {
       "ticker": "IEF",
-      "currentPrice": 96.265,
-      "change": -0.24500000000000455,
-      "changePercent": -0.25385970365765675,
+      "currentPrice": 96.24,
+      "change": -0.27000000000001023,
+      "changePercent": -0.27976375505130063,
       "previousClose": 96.51,
       "high": 96.4497,
       "low": 96.155,
@@ -284,9 +284,9 @@
     },
     "MSFT": {
       "ticker": "MSFT",
-      "currentPrice": 404.196,
-      "change": -9.073999999999955,
-      "changePercent": -2.195659012267998,
+      "currentPrice": 404.37,
+      "change": -8.899999999999977,
+      "changePercent": -2.1535557867737745,
       "previousClose": 413.27,
       "high": 416.46,
       "low": 401.01,
@@ -294,9 +294,9 @@
     },
     "NVDA": {
       "ticker": "NVDA",
-      "currentPrice": 190.005,
-      "change": 1.4650000000000034,
-      "changePercent": 0.777023443301158,
+      "currentPrice": 190.05,
+      "change": 1.5100000000000193,
+      "changePercent": 0.8008910576005194,
       "previousClose": 188.54,
       "high": 193.26,
       "low": 188.77,
@@ -304,9 +304,9 @@
     },
     "AMZN": {
       "ticker": "AMZN",
-      "currentPrice": 204.195,
-      "change": -2.765000000000015,
-      "changePercent": -1.3360069578662614,
+      "currentPrice": 204.08,
+      "change": -2.8799999999999955,
+      "changePercent": -1.391573250869731,
       "previousClose": 206.96,
       "high": 208.57,
       "low": 202.49,
