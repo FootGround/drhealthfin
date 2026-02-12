@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-12T21:12:13.492Z",
+  "lastUpdated": "2026-02-12T21:29:15.115Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -284,9 +284,9 @@
     },
     "MSFT": {
       "ticker": "MSFT",
-      "currentPrice": 401.884,
-      "change": -2.48599999999999,
-      "changePercent": -0.6147834903677301,
+      "currentPrice": 401.84,
+      "change": -2.5300000000000296,
+      "changePercent": -0.6256646140910626,
       "previousClose": 404.37,
       "high": 406.2,
       "low": 398.01,
