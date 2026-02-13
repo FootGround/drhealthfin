@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-13T21:14:09.691Z",
+  "lastUpdated": "2026-02-13T21:18:28.084Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -294,9 +294,9 @@
     },
     "NVDA": {
       "ticker": "NVDA",
-      "currentPrice": 182.78,
-      "change": -4.159999999999997,
-      "changePercent": -2.2253129346314307,
+      "currentPrice": 182.81,
+      "change": -4.1299999999999955,
+      "changePercent": -2.2092650048143767,
       "previousClose": 186.94,
       "high": 187.5,
       "low": 181.59,
