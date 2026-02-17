@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-17T21:13:40.788Z",
+  "lastUpdated": "2026-02-17T21:17:53.350Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -174,9 +174,9 @@
     },
     "ACWI": {
       "ticker": "ACWI",
-      "currentPrice": 145.79,
-      "change": -0.15000000000000568,
-      "changePercent": -0.10278196519117835,
+      "currentPrice": 146,
+      "change": 0.060000000000002274,
+      "changePercent": 0.04111278607647134,
       "previousClose": 145.94,
       "high": 146.36,
       "low": 144.385,
@@ -304,9 +304,9 @@
     },
     "AMZN": {
       "ticker": "AMZN",
-      "currentPrice": 201.183,
-      "change": 2.3930000000000007,
-      "changePercent": 1.2037828864631022,
+      "currentPrice": 201.15,
+      "change": 2.3600000000000136,
+      "changePercent": 1.1871824538457738,
       "previousClose": 198.79,
       "high": 201.7362,
       "low": 196,
