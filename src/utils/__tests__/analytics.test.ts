@@ -1,4 +1,4 @@
-import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, test, expect, vi, beforeEach, afterEach, type MockInstance } from 'vitest';
 import { trackEvent } from '../analytics';
 
 // Mock navigator for Node environment
@@ -19,7 +19,7 @@ if (typeof globalThis.window === 'undefined') {
 }
 
 describe('analytics', () => {
-  let consoleSpy: ReturnType<typeof vi.spyOn>;
+  let consoleSpy: MockInstance;
 
   beforeEach(() => {
     consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
