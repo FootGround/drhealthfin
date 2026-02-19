@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-19T21:14:13.112Z",
+  "lastUpdated": "2026-02-19T21:26:04.033Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -274,9 +274,9 @@
     },
     "AAPL": {
       "ticker": "AAPL",
-      "currentPrice": 260.547,
-      "change": -3.8029999999999973,
-      "changePercent": -1.438623037639492,
+      "currentPrice": 260.58,
+      "change": -3.7700000000000387,
+      "changePercent": -1.426139587667879,
       "previousClose": 264.35,
       "high": 264.48,
       "low": 260.05,
@@ -284,9 +284,9 @@
     },
     "MSFT": {
       "ticker": "MSFT",
-      "currentPrice": 398.314,
-      "change": -1.2860000000000014,
-      "changePercent": -0.3218218218218221,
+      "currentPrice": 398.46,
+      "change": -1.1400000000000432,
+      "changePercent": -0.28528528528529606,
       "previousClose": 399.6,
       "high": 404.43,
       "low": 396.67,
