@@ -29,7 +29,7 @@ export const formulaExplanations: Record<string, FormulaExplanation> = {
 
   spyVs200MA: {
     name: 'S&P 500 vs 200-Day MA',
-    formula: 'Stepped scoring based on % distance from 200-day moving average',
+    formula: '% distance = (price − 200-day MA) ÷ 200-day MA × 100. Mapped to a score using fixed bands.',
     bounds: '0 ≤ score ≤ 100',
     thresholds: [
       { range: '≥ 10%', label: 'Strong uptrend', scoreRange: '100' },
@@ -41,7 +41,7 @@ export const formulaExplanations: Record<string, FormulaExplanation> = {
       { range: '-10% to -5%', label: 'Strong downtrend', scoreRange: '15' },
       { range: '< -10%', label: 'Extreme downtrend', scoreRange: '0' },
     ],
-    rationale: 'Price above 200-day moving average indicates long-term uptrend. Most significant trend indicator.',
+    rationale: 'The 200-day moving average is the most widely-watched long-term trend line. Institutions and funds use it as a simple bull/bear dividing line — price above it means the market is in a long-term uptrend; below it signals a downtrend. The further above, the stronger the trend, though readings beyond +10% can indicate an stretched market. This is the single highest-weighted signal in the Direction pillar.',
   },
 
   qqqVs200MA: {
