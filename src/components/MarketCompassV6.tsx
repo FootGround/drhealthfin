@@ -390,7 +390,7 @@ const calculateCompositeScore = (pillars: Pillars): number => {
 // SIGNAL STRENGTH BAR COMPONENT
 // ============================================================================
 
-const SignalStrengthBar = ({ level, color }: { level: 1 | 2 | 3; color: string }) => (
+const SignalStrengthBar = ({ level, color, borderColor }: { level: 1 | 2 | 3; color: string; borderColor: string }) => (
   <div
     style={{
       display: 'flex',
@@ -407,7 +407,7 @@ const SignalStrengthBar = ({ level, color }: { level: 1 | 2 | 3; color: string }
           width: '4px',
           height: i <= level ? '12px' : '8px',
           borderRadius: '2px',
-          backgroundColor: i <= level ? color : dsColors.border.subtle,
+          backgroundColor: i <= level ? color : borderColor,
           transition: 'all 0.2s ease',
         }}
       />
@@ -422,9 +422,11 @@ const SignalStrengthBar = ({ level, color }: { level: 1 | 2 | 3; color: string }
 const PercentileIndicator = ({
   percentile,
   historyLength,
+  c,
 }: {
   percentile: number | null;
   historyLength: number;
+  c: { dim: string; muted: string; border: string; bg: string };
 }) => {
   // Building state - show progress bar
   if (percentile === null) {
@@ -435,7 +437,7 @@ const PercentileIndicator = ({
           alignItems: 'center',
           gap: spacing.sm,
           padding: `${spacing.sm} ${spacing.md}`,
-          backgroundColor: dsColors.bg.secondary,
+          backgroundColor: c.dim,
           borderRadius: radius.lg,
           marginTop: spacing.md,
           maxWidth: '400px',
@@ -446,7 +448,7 @@ const PercentileIndicator = ({
           style={{
             flex: 1,
             height: '4px',
-            backgroundColor: dsColors.border.subtle,
+            backgroundColor: c.border,
             borderRadius: '2px',
             overflow: 'hidden',
           }}
@@ -455,7 +457,7 @@ const PercentileIndicator = ({
             style={{
               width: `${(historyLength / 30) * 100}%`,
               height: '100%',
-              backgroundColor: dsColors.text.tertiary,
+              backgroundColor: c.muted,
               transition: 'width 0.3s ease',
             }}
           />
@@ -466,7 +468,7 @@ const PercentileIndicator = ({
             fontWeight: 500,
             lineHeight: 1.4,
             letterSpacing: '0.02em',
-            color: dsColors.text.tertiary,
+            color: c.muted,
             whiteSpace: 'nowrap',
           }}
         >
@@ -481,7 +483,7 @@ const PercentileIndicator = ({
     <div
       style={{
         padding: `${spacing.sm} ${spacing.md}`,
-        backgroundColor: dsColors.bg.secondary,
+        backgroundColor: c.dim,
         borderRadius: radius.lg,
         marginTop: spacing.md,
         maxWidth: '400px',
@@ -503,7 +505,7 @@ const PercentileIndicator = ({
             fontWeight: 500,
             lineHeight: 1.4,
             letterSpacing: '0.02em',
-            color: dsColors.text.tertiary,
+            color: c.muted,
           }}
         >
           30-Day Rank
@@ -527,7 +529,7 @@ const PercentileIndicator = ({
         style={{
           width: '100%',
           height: '4px',
-          backgroundColor: dsColors.border.subtle,
+          backgroundColor: c.border,
           borderRadius: '2px',
           position: 'relative',
         }}
@@ -543,7 +545,7 @@ const PercentileIndicator = ({
             borderRadius: '50%',
             backgroundColor: dsColors.accent.gold,
             transform: 'translateX(-50%)',
-            boxShadow: `0 0 0 2px ${dsColors.bg.secondary}`,
+            boxShadow: `0 0 0 2px ${c.dim}`,
           }}
         />
       </div>
@@ -603,10 +605,12 @@ const FormulaCard = ({
   signalKey,
   rawValue,
   score,
+  c,
 }: {
   signalKey: string;
   rawValue: string | number | boolean;
   score: number;
+  c: { dim: string; bg: string; muted: string; text: string; border: string };
 }) => {
   const formula = formulaExplanations[signalKey];
   if (!formula) return null;
@@ -618,9 +622,9 @@ const FormulaCard = ({
     <div
       style={{
         padding: spacing.md,
-        backgroundColor: dsColors.bg.tertiary,
+        backgroundColor: c.dim,
         borderRadius: radius.lg,
-        border: `1px solid ${dsColors.border.subtle}`,
+        border: `1px solid ${c.border}`,
         marginTop: spacing.sm,
       }}
     >
@@ -631,7 +635,7 @@ const FormulaCard = ({
           fontWeight: 500,
           lineHeight: 1.4,
           letterSpacing: '0.02em',
-          color: dsColors.text.tertiary,
+          color: c.muted,
           marginBottom: spacing.sm,
         }}
       >
@@ -645,9 +649,9 @@ const FormulaCard = ({
           fontWeight: 500,
           lineHeight: 1.4,
           fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace",
-          color: dsColors.text.secondary,
+          color: c.muted,
           padding: spacing.sm,
-          backgroundColor: dsColors.bg.primary,
+          backgroundColor: c.bg,
           borderRadius: radius.md,
           marginBottom: spacing.md,
         }}
@@ -665,7 +669,7 @@ const FormulaCard = ({
         }}
       >
         <div>
-          <div style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', color: dsColors.text.tertiary }}>
+          <div style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', color: c.muted }}>
             Raw
           </div>
           <div
@@ -673,14 +677,14 @@ const FormulaCard = ({
               fontSize: '14px',
               fontWeight: 500,
               fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace",
-              color: dsColors.text.primary,
+              color: c.text,
             }}
           >
             {displayRaw}
           </div>
         </div>
         <div>
-          <div style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', color: dsColors.text.tertiary }}>
+          <div style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', color: c.muted }}>
             Score
           </div>
           <div
@@ -688,7 +692,7 @@ const FormulaCard = ({
               fontSize: '14px',
               fontWeight: 500,
               fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace",
-              color: dsColors.text.primary,
+              color: c.text,
             }}
           >
             {score}
@@ -702,9 +706,9 @@ const FormulaCard = ({
           fontSize: '13px',
           fontWeight: 400,
           lineHeight: 1.5,
-          color: dsColors.text.secondary,
+          color: c.muted,
           paddingTop: spacing.sm,
-          borderTop: `1px solid ${dsColors.border.subtle}`,
+          borderTop: `1px solid ${c.border}`,
         }}
       >
         {formula.rationale}
@@ -726,13 +730,13 @@ const pillarAgreementLabels: Record<string, string> = {
   global: 'Global',
 };
 
-const PillarAgreement = ({ pillars, c }: { pillars: Pillars; c: { dim: string; border: string; muted: string } }) => {
+const PillarAgreement = ({ pillars, c }: { pillars: Pillars; c: { dim: string; border: string; muted: string; text: string } }) => {
   const categories = categorizePillars(pillars);
   const interpretation = getInterpretation(categories);
 
   const dotColors = {
     bullish: dsColors.signal.constructive,
-    neutral: dsColors.text.tertiary,
+    neutral: c.muted,
     bearish: dsColors.signal.strongDefense,
   };
 
@@ -758,10 +762,10 @@ const PillarAgreement = ({ pillars, c }: { pillars: Pillars; c: { dim: string; b
               flexShrink: 0,
             }}
           />
-          <span style={{ fontSize: '14px', fontWeight: 500, fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace", color: dsColors.text.primary }}>
+          <span style={{ fontSize: '14px', fontWeight: 500, fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace", color: c.text }}>
             {entries.length}
           </span>
-          <span style={{ fontSize: '13px', fontWeight: 400, color: dsColors.text.tertiary }}>
+          <span style={{ fontSize: '13px', fontWeight: 400, color: c.muted }}>
             {label}
           </span>
         </div>
@@ -770,7 +774,7 @@ const PillarAgreement = ({ pillars, c }: { pillars: Pillars; c: { dim: string; b
             key={key}
             style={{
               fontSize: '13px',
-              color: dsColors.text.secondary,
+              color: c.muted,
               paddingLeft: spacing.md,
               marginTop: spacing.xs,
             }}
@@ -808,9 +812,9 @@ const PillarAgreement = ({ pillars, c }: { pillars: Pillars; c: { dim: string; b
           fontSize: '13px',
           fontWeight: 400,
           lineHeight: 1.5,
-          color: dsColors.text.secondary,
+          color: c.muted,
           paddingTop: spacing.sm,
-          borderTop: `1px solid ${dsColors.border.subtle}`,
+          borderTop: `1px solid ${c.border}`,
         }}
       >
         {interpretation}
@@ -987,7 +991,7 @@ const MarketCompassV6 = () => {
                     gap: spacing.sm,
                   }}
                 >
-                  <SignalStrengthBar level={signalStrength.level} color={signalStrength.color} />
+                  <SignalStrengthBar level={signalStrength.level} color={signalStrength.color} borderColor={c.border} />
                   <span
                     style={{
                       fontSize: '14px',
@@ -1006,7 +1010,7 @@ const MarketCompassV6 = () => {
                     fontSize: '13px',
                     fontWeight: 400,
                     lineHeight: 1.5,
-                    color: dsColors.text.secondary,
+                    color: c.muted,
                     marginTop: spacing.xs,
                   }}
                 >
@@ -1020,7 +1024,7 @@ const MarketCompassV6 = () => {
                     fontWeight: 500,
                     lineHeight: 1.4,
                     letterSpacing: '0.02em',
-                    color: dsColors.text.tertiary,
+                    color: c.muted,
                     marginTop: spacing.xs,
                   }}
                 >
@@ -1034,6 +1038,7 @@ const MarketCompassV6 = () => {
           <PercentileIndicator
             percentile={getPercentile30d(compositeScore)}
             historyLength={getHistoryLength()}
+            c={c}
           />
 
           <div style={{ fontSize: '12px', color: c.muted, marginTop: spacing.md, opacity: 0.6 }}>{data.updatedAt}</div>
@@ -1204,7 +1209,7 @@ const MarketCompassV6 = () => {
                                   style={{
                                     background: 'none',
                                     border: 'none',
-                                    color: dsColors.text.tertiary,
+                                    color: c.muted,
                                     opacity: isFormulaOpen ? 1 : 0.5,
                                     cursor: 'pointer',
                                     padding: spacing.xs,
@@ -1261,6 +1266,7 @@ const MarketCompassV6 = () => {
                               signalKey={formulaKey}
                               rawValue={signal.rawValue}
                               score={signal.score}
+                              c={c}
                             />
                           </div>
                         )}
