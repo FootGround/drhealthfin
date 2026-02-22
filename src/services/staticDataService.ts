@@ -11,20 +11,73 @@
  * - Works offline (with cached data)
  */
 
+interface StaticInstrument {
+  ticker: string;
+  currentPrice: number;
+  change: number;
+  changePercent: number;
+  previousClose: number;
+  high?: number;
+  low?: number;
+  open?: number;
+  sparkline?: number[];
+}
+
+export interface CompassDirectionEntry {
+  price: number;
+  ma200: number;
+  percentVs200MA: number;
+  dailyChange: number;
+}
+
+export interface CompassData {
+  direction: {
+    spy: CompassDirectionEntry;
+    qqq: CompassDirectionEntry;
+    iwm: CompassDirectionEntry;
+  };
+  volatility: {
+    vix: { value: number; dailyChange: number; isContango: boolean };
+    putCall: { ratio: number; change: number };
+  };
+  breadth: {
+    advancers: number;
+    decliners: number;
+    percentAbove200MA: number;
+    percentAbove200MAChange: number;
+    newHighs: number;
+    newLows: number;
+  };
+  credit: {
+    treasury10Y: number;
+    treasury2Y: number;
+    yieldCurveSpread: number;
+    yieldCurveChange: number;
+    hySpread: number;
+    hySpreadChange: number;
+    igSpread: number;
+    igSpreadChange: number;
+  };
+  sentiment: {
+    fearGreed: number;
+    fearGreedChange: number;
+    bulls: number;
+    bears: number;
+    bullsChange: number;
+    bearsChange: number;
+  };
+  global: {
+    acwi: { price: number; percentVs50MA: number; dailyChange: number };
+    vstoxx: { value: number; change: number };
+    pmi: { value: number; change: number };
+  };
+}
+
 interface StaticMarketData {
   lastUpdated: string;
   marketOpen: boolean;
-  instruments: Record<string, {
-    ticker: string;
-    currentPrice: number;
-    change: number;
-    changePercent: number;
-    previousClose: number;
-    high?: number;
-    low?: number;
-    open?: number;
-    sparkline?: number[];
-  }>;
+  instruments: Record<string, StaticInstrument>;
+  compassData?: CompassData;
 }
 
 class StaticDataService {
@@ -65,7 +118,7 @@ class StaticDataService {
     try {
       // Add cache busting query param to avoid stale browser cache
       const timestamp = Math.floor(Date.now() / (5 * 60 * 1000)); // Update every 5 minutes
-      const response = await fetch(`/market-data.json?t=${timestamp}`);
+      const response = await fetch(`./market-data.json?t=${timestamp}`);
 
       if (!response.ok) {
         throw new Error(`Failed to fetch market data: ${response.status}`);
@@ -89,6 +142,14 @@ class StaticDataService {
         instruments: {},
       };
     }
+  }
+
+  /**
+   * Get compass data for Market Compass V6
+   */
+  async getCompassData(): Promise<CompassData | null> {
+    const data = await this.fetchMarketData();
+    return data.compassData || null;
   }
 
   /**
@@ -144,6 +205,7 @@ class StaticDataService {
       lastUpdated: data.lastUpdated,
       marketOpen: data.marketOpen,
       instrumentCount: Object.keys(data.instruments).length,
+      hasCompassData: !!data.compassData,
       age: Date.now() - new Date(data.lastUpdated).getTime(),
     };
   }
