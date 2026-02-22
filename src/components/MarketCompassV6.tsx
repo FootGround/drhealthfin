@@ -924,6 +924,7 @@ const MarketCompassV6 = () => {
   if (view === 'home') {
     return (
       <div
+        onClick={() => setView('details')}
         style={{
           minHeight: '100vh',
           background: c.bg,
@@ -931,6 +932,7 @@ const MarketCompassV6 = () => {
           fontFamily: "'SF Pro Display', -apple-system, system-ui, sans-serif",
           display: 'flex',
           flexDirection: 'column',
+          cursor: 'pointer',
         }}
       >
         <style>{`
@@ -947,7 +949,7 @@ const MarketCompassV6 = () => {
               <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: data.marketStatus === 'open' ? c.positive : c.negative }} />
               {data.marketStatus === 'open' ? 'Live' : 'Closed'}
             </span>
-            <button onClick={() => setIsDark(!isDark)} style={{ background: 'none', border: 'none', color: c.muted, fontSize: '14px' }}>
+            <button onClick={(e) => { e.stopPropagation(); setIsDark(!isDark); }} style={{ background: 'none', border: 'none', color: c.muted, fontSize: '14px' }}>
               {isDark ? '◐' : '◑'}
             </button>
           </div>
