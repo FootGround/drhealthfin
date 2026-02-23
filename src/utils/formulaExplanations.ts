@@ -46,7 +46,7 @@ export const formulaExplanations: Record<string, FormulaExplanation> = {
 
   qqqVs200MA: {
     name: 'Nasdaq 100 vs 200-Day MA',
-    formula: 'Same as SPY formula (stepped by % distance)',
+    formula: '% distance = (price − 200-day MA) ÷ 200-day MA × 100. Mapped to a score using fixed bands.',
     bounds: '0 ≤ score ≤ 100',
     thresholds: [
       { range: '≥ 10%', label: 'Strong uptrend', scoreRange: '100' },
@@ -55,12 +55,12 @@ export const formulaExplanations: Record<string, FormulaExplanation> = {
       { range: '0% to 2%', label: 'Near trend', scoreRange: '55' },
       { range: '< 0%', label: 'Below trend', scoreRange: '0-45' },
     ],
-    rationale: 'Tech-heavy Nasdaq provides growth/risk appetite signal. Often leads broader market.',
+    rationale: 'The Nasdaq 100 is heavily weighted toward mega-cap tech and growth stocks, making it a barometer for risk appetite and innovation-sector health. When QQQ holds above its 200-day MA, growth stocks are in a long-term uptrend — historically associated with expanding multiples and risk-on behavior. QQQ often leads the broader market: it breaks down before and recovers faster than SPY, making it a useful early-warning and early-confirmation signal.',
   },
 
   iwmVs200MA: {
     name: 'Russell 2000 vs 200-Day MA',
-    formula: 'Same as SPY formula (stepped by % distance)',
+    formula: '% distance = (price − 200-day MA) ÷ 200-day MA × 100. Mapped to a score using fixed bands.',
     bounds: '0 ≤ score ≤ 100',
     thresholds: [
       { range: '≥ 10%', label: 'Strong uptrend', scoreRange: '100' },
@@ -69,7 +69,7 @@ export const formulaExplanations: Record<string, FormulaExplanation> = {
       { range: '0% to 2%', label: 'Near trend', scoreRange: '55' },
       { range: '< 0%', label: 'Below trend', scoreRange: '0-45' },
     ],
-    rationale: 'Small caps indicate risk appetite and domestic economic health.',
+    rationale: 'The Russell 2000 tracks 2,000 small-cap US companies that are more domestically focused and economically sensitive than large-caps. Small caps tend to outperform when investors are confident in domestic growth and willing to take on risk. IWM below its 200-day MA often signals that economic optimism is fading at the grassroots level, even if large-cap indices still look healthy.',
   },
 
   // =========================================================================
@@ -277,7 +277,7 @@ export const formulaExplanations: Record<string, FormulaExplanation> = {
 
   msciWorldVs50MA: {
     name: 'MSCI World (ACWI) vs 50-Day MA',
-    formula: 'Same as SPY formula (stepped by % distance)',
+    formula: '% distance = (price − 50-day MA) ÷ 50-day MA × 100. Mapped to a score using fixed bands.',
     bounds: '0 ≤ score ≤ 100',
     thresholds: [
       { range: '≥ 10%', label: 'Strong uptrend', scoreRange: '100' },
