@@ -1298,6 +1298,10 @@ const MarketCompassV6 = () => {
             <path d="M9 18l6-6-6-6" />
           </svg>
         </button>
+
+        <div style={{ padding: '12px 20px', textAlign: 'center', fontSize: '11px', color: c.muted }}>
+          Not financial advice • Methodology is open source
+        </div>
       </div>
     );
   }
