@@ -928,6 +928,7 @@ const MarketCompassV6 = () => {
   const [isDark, setIsDark] = useState(true);
   const [expandedPillar, setExpandedPillar] = useState<string | null>(null);
   const [expandedFormula, setExpandedFormula] = useState<string | null>(null);
+  const [isScoreCalcOpen, setIsScoreCalcOpen] = useState(false);
 
   const pillars = useMemo(() => (data ? calculatePillarScores(data) : null), [data]);
   const compositeScore = useMemo(() => (pillars ? calculateCompositeScore(pillars) : 0), [pillars]);
@@ -1253,6 +1254,42 @@ const MarketCompassV6 = () => {
         <p style={{ fontSize: '13px', color: c.muted }}>Weighted average of 6 pillars × 3 signals each</p>
       </section>
 
+      {/* Pillar Agreement (Story 7) */}
+      <PillarAgreement pillars={pillars} c={c} />
+
+      {/* Calculation Transparency — collapsible */}
+      <section style={{ margin: '0 20px 16px', padding: '0', background: c.dim, borderRadius: '8px', overflow: 'hidden' }}>
+        <button
+          onClick={() => setIsScoreCalcOpen(!isScoreCalcOpen)}
+          style={{
+            width: '100%',
+            padding: '12px 16px',
+            background: 'none',
+            border: 'none',
+            color: c.text,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            cursor: 'pointer',
+          }}
+        >
+          <span style={{ fontSize: '10px', fontWeight: 600, color: c.muted, letterSpacing: '0.1em', textTransform: 'uppercase' as const }}>Score Calculation</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={c.muted} strokeWidth="2" style={{ transform: isScoreCalcOpen ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s', flexShrink: 0 }}>
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+        {isScoreCalcOpen && (
+          <div style={{ padding: '0 16px 16px', fontSize: '12px', fontFamily: 'SF Mono, monospace', color: c.text, lineHeight: 1.8 }}>
+            {Object.entries(pillars).map(([key, pillar]) => (
+              <div key={key}>
+                {pillarLabels[key as keyof typeof pillarLabels]}: {pillar.score} × {(pillar.weight * 100).toFixed(0)}% = {(pillar.score * pillar.weight).toFixed(1)}
+              </div>
+            ))}
+            <div style={{ borderTop: `1px solid ${c.border}`, marginTop: '8px', paddingTop: '8px', fontWeight: 600 }}>Total: {compositeScore}</div>
+          </div>
+        )}
+      </section>
+
       {/* Pillars */}
       <section style={{ padding: '0 20px' }}>
         {Object.entries(pillars).map(([key, pillar], i) => {
@@ -1429,22 +1466,6 @@ const MarketCompassV6 = () => {
             </div>
           );
         })}
-      </section>
-
-      {/* Pillar Agreement (Story 7) */}
-      <PillarAgreement pillars={pillars} c={c} />
-
-      {/* Calculation Transparency */}
-      <section style={{ margin: '20px', padding: '16px', background: c.dim, borderRadius: '8px' }}>
-        <h3 style={{ fontSize: '10px', fontWeight: 600, color: c.muted, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Score Calculation</h3>
-        <div style={{ fontSize: '12px', fontFamily: 'SF Mono, monospace', color: c.text, lineHeight: 1.8 }}>
-          {Object.entries(pillars).map(([key, pillar]) => (
-            <div key={key}>
-              {pillarLabels[key as keyof typeof pillarLabels]}: {pillar.score} × {(pillar.weight * 100).toFixed(0)}% = {(pillar.score * pillar.weight).toFixed(1)}
-            </div>
-          ))}
-          <div style={{ borderTop: `1px solid ${c.border}`, marginTop: '8px', paddingTop: '8px', fontWeight: 600 }}>Total: {compositeScore}</div>
-        </div>
       </section>
 
       {/* Sources */}
