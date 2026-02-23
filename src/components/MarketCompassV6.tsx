@@ -720,7 +720,7 @@ const FormulaCard = ({
                 <span style={{ fontSize: '12px', fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace", color: isActive ? c.text : c.muted, fontWeight: isActive ? 600 : 400 }}>
                   {t.range}
                 </span>
-                <span style={{ fontSize: '12px', color: isActive ? c.text : c.muted, fontWeight: isActive ? 500 : 400 }}>
+                <span style={{ fontSize: '12px', color: isActive ? c.text : c.muted, fontWeight: isActive ? 500 : 400, textAlign: 'left' as const }}>
                   {t.label}
                 </span>
                 <span style={{ fontSize: '12px', fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace", color: isActive ? c.text : c.muted, fontWeight: isActive ? 600 : 400, textAlign: 'right' as const }}>
