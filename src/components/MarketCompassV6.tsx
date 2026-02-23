@@ -618,6 +618,9 @@ const FormulaCard = ({
   const displayRaw =
     typeof rawValue === 'boolean' ? (rawValue ? 'Contango' : 'Backwardation') : rawValue;
 
+  // Find which threshold band the current score maps to
+  const activeThreshold = formula.thresholds.find(t => t.scoreRange === score.toString());
+
   return (
     <div
       style={{
@@ -653,11 +656,36 @@ const FormulaCard = ({
           padding: spacing.sm,
           backgroundColor: c.bg,
           borderRadius: radius.md,
-          marginBottom: spacing.md,
+          marginBottom: spacing.sm,
         }}
       >
         {formula.formula}
       </div>
+
+      {/* Active Band Derivation */}
+      {activeThreshold && (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: spacing.sm,
+            padding: spacing.sm,
+            backgroundColor: c.bg,
+            borderRadius: radius.sm,
+            marginBottom: spacing.md,
+            fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace",
+            fontSize: '13px',
+            flexWrap: 'wrap' as const,
+          }}
+        >
+          <span style={{ color: c.text, fontWeight: 500 }}>{displayRaw}</span>
+          <span style={{ color: c.muted }}>→</span>
+          <span style={{ color: c.muted }}>{activeThreshold.range}</span>
+          <span style={{ color: c.muted }}>({activeThreshold.label})</span>
+          <span style={{ color: c.muted }}>→</span>
+          <span style={{ color: c.text, fontWeight: 600 }}>Score: {score}</span>
+        </div>
+      )}
 
       {/* Raw / Score Grid */}
       <div
