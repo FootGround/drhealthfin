@@ -1288,35 +1288,31 @@ const MarketCompassV6 = () => {
 
                     return (
                       <div key={j}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', background: c.dim, borderRadius: '8px' }}>
+                        <div
+                          onClick={formulaKey ? () => {
+                            if (!isFormulaOpen) trackEvent('formula_tooltip_opened', { signalKey: formulaKey, compositeScore });
+                            setExpandedFormula(isFormulaOpen ? null : formulaKey);
+                          } : undefined}
+                          style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', background: c.dim, borderRadius: '8px', cursor: formulaKey ? 'pointer' : 'default' }}
+                        >
                           <div style={{ flex: 1 }}>
                             <div style={{ fontSize: '13px', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '2px' }}>
                               {signal.name}
                               <span style={{ fontSize: '9px', color: c.muted, background: c.border, padding: '2px 4px', borderRadius: '3px' }}>{signal.ticker}</span>
                               {formulaKey && (
-                                <button
-                                  onClick={() => {
-                                    if (!isFormulaOpen) trackEvent('formula_tooltip_opened', { signalKey: formulaKey, compositeScore });
-                                    setExpandedFormula(isFormulaOpen ? null : formulaKey);
-                                  }}
+                                <span
                                   aria-label={`${isFormulaOpen ? 'Hide' : 'Show'} formula for ${signal.name}`}
                                   aria-expanded={isFormulaOpen}
                                   style={{
-                                    background: 'none',
-                                    border: 'none',
                                     color: c.muted,
                                     opacity: isFormulaOpen ? 1 : 0.5,
-                                    cursor: 'pointer',
                                     padding: spacing.xs,
                                     display: 'flex',
                                     alignItems: 'center',
-                                    transition: 'opacity 0.15s ease',
                                   }}
-                                  onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.8'; }}
-                                  onMouseLeave={(e) => { e.currentTarget.style.opacity = isFormulaOpen ? '1' : '0.5'; }}
                                 >
                                   <InfoIcon size={14} />
-                                </button>
+                                </span>
                               )}
                             </div>
                             <div style={{ fontSize: '11px', color: c.muted }}>{signal.threshold}</div>
