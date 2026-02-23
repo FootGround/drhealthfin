@@ -1196,29 +1196,33 @@ const MarketCompassV6 = () => {
                   {signalStrength.description}
                 </div>
 
-                {/* Frequency */}
-                <div
-                  style={{
-                    fontSize: '12px',
-                    fontWeight: 500,
-                    lineHeight: 1.4,
-                    letterSpacing: '0.02em',
-                    color: c.muted,
-                    marginTop: spacing.xs,
-                  }}
-                >
-                  Occurs {signalStrength.frequency}
-                </div>
+                {/* REMOVED: Frequency ("Occurs ~18% of days")
+                    Restore by adding back:
+                    <div style={{ fontSize: '12px', fontWeight: 500, lineHeight: 1.4,
+                      letterSpacing: '0.02em', color: c.muted, marginTop: spacing.xs }}>
+                      Occurs {signalStrength.frequency}
+                    </div>
+                    signalStrength.frequency is a hardcoded estimate from getSignalStrength()
+                    in designSystem.ts — e.g. "~18% of days", "~8% of days". Worth restoring
+                    only if backed by real historical frequency data. */}
               </div>
             );
           })()}
 
-          {/* 30-Day Percentile Indicator (Story 3) */}
-          <PercentileIndicator
-            percentile={getPercentile30d(compositeScore)}
-            historyLength={getHistoryLength()}
-            c={c}
-          />
+          {/* 30-Day Percentile Indicator — only shown once 30 days of history exist.
+              During the building phase (< 30 days) we show nothing rather than a
+              "7/30 days" progress bar, which communicates incompleteness, not insight.
+              To restore the building-phase UI: remove the `percentile !== null` guard
+              and let PercentileIndicator handle the null case (it shows a progress bar
+              with historyLength/30 fill). The PercentileIndicator component itself is
+              intact in this file — it just never receives percentile=null anymore. */}
+          {getPercentile30d(compositeScore) !== null && (
+            <PercentileIndicator
+              percentile={getPercentile30d(compositeScore)}
+              historyLength={getHistoryLength()}
+              c={c}
+            />
+          )}
 
           {/* Pillar Radar Chart */}
           <div style={{ width: '100%', marginTop: spacing.lg }}>
