@@ -78,7 +78,7 @@ export const formulaExplanations: Record<string, FormulaExplanation> = {
 
   advanceDeclineRatio: {
     name: 'Advance/Decline Ratio',
-    formula: 'score based on advancers / (advancers + decliners)',
+    formula: 'advancers ÷ (advancers + decliners) = % of stocks rising. Stepped score based on that percentage.',
     bounds: '0 ≤ score ≤ 100',
     thresholds: [
       { range: '≥ 75%', label: 'Strong breadth', scoreRange: '100' },
@@ -88,12 +88,12 @@ export const formulaExplanations: Record<string, FormulaExplanation> = {
       { range: '35% to 45%', label: 'Weak', scoreRange: '20' },
       { range: '< 35%', label: 'Very weak', scoreRange: '0' },
     ],
-    rationale: 'Higher percentage of advancing stocks indicates broad market participation, not just a few leaders.',
+    rationale: 'The NYSE lists roughly 3,000 stocks on any given day. When 65%+ are advancing, the rally has broad participation — strength is distributed across the market, not propped up by a handful of mega-cap names. A reading below 45% means sellers are dominating even if headline indexes appear flat: a classic breadth divergence that has historically preceded corrections. This is the simplest, most direct measure of whether the average stock is going up or down.',
   },
 
   percentAbove200MA: {
     name: '% of Stocks Above 200-Day MA',
-    formula: 'Stepped scoring based on percentage',
+    formula: 'Count of S&P 500 stocks above their individual 200-day MA ÷ total stocks × 100. Stepped score based on that percentage.',
     bounds: '0 ≤ score ≤ 100',
     thresholds: [
       { range: '≥ 80%', label: 'Extremely strong', scoreRange: '100' },
@@ -104,12 +104,12 @@ export const formulaExplanations: Record<string, FormulaExplanation> = {
       { range: '30% to 40%', label: 'Very weak', scoreRange: '20' },
       { range: '< 30%', label: 'Extremely weak', scoreRange: '0' },
     ],
-    rationale: 'Measures broad market health. Above 60% indicates strong participation.',
+    rationale: 'This is the market\'s X-ray. The index price can look healthy even when most of its members are in long-term downtrends — driven by a few large-cap giants holding the average up. When fewer than 50% of stocks are above their own 200-day MA, the apparent uptrend is a narrow, leadership-driven story. Readings above 70% have historically coincided with confirmed bull markets; below 30% with bottoming conditions and peak fear.',
   },
 
   newHighsVsLows: {
     name: 'New Highs vs New Lows',
-    formula: 'score based on ratio of new highs to new lows',
+    formula: 'new 52-week highs ÷ new 52-week lows. Ratio mapped to a score using fixed bands.',
     bounds: '0 ≤ score ≤ 100',
     thresholds: [
       { range: '≥ 5:1', label: 'Extremely bullish', scoreRange: '100' },
@@ -120,7 +120,7 @@ export const formulaExplanations: Record<string, FormulaExplanation> = {
       { range: '0.2:1 to 0.5:1', label: 'Bearish', scoreRange: '20' },
       { range: '< 0.2:1', label: 'Extremely bearish', scoreRange: '0' },
     ],
-    rationale: 'More new highs than new lows indicates healthy market momentum and leadership.',
+    rationale: 'Every day the exchange marks stocks hitting their highest or lowest price in the past year. A healthy market mints far more new highs than new lows: companies are reaching new peaks, not crisis points. A 5:1 or better ratio is the hallmark of a broad bull market. When new lows outnumber new highs, institutional money is quietly exiting even if indexes hold up. Crucially, this signal tends to lead price: breadth deteriorates before index-level selloffs, making it an early warning system.',
   },
 
   // =========================================================================

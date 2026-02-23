@@ -1341,6 +1341,25 @@ const MarketCompassV6 = () => {
                                   const ma = data.global.acwi.price / (1 + data.global.acwi.percentVs50MA / 100);
                                   return [{ label: 'Price', value: fmt(data.global.acwi.price) }, { label: '50-day MA', value: fmt(ma) }];
                                 }
+                                if (formulaKey === 'advanceDeclineRatio') {
+                                  return [
+                                    { label: 'Advancing', value: data.breadth.advancers.toLocaleString() },
+                                    { label: 'Declining', value: data.breadth.decliners.toLocaleString() },
+                                  ];
+                                }
+                                if (formulaKey === 'percentAbove200MA') {
+                                  const chg = data.breadth.percentAbove200MAChange;
+                                  return [
+                                    { label: '% Above 200d MA', value: `${data.breadth.percentAbove200MA}%` },
+                                    { label: 'Wk/Wk Change', value: `${chg >= 0 ? '+' : ''}${chg}%` },
+                                  ];
+                                }
+                                if (formulaKey === 'newHighsVsLows') {
+                                  return [
+                                    { label: 'New Highs', value: data.breadth.newHighs.toLocaleString() },
+                                    { label: 'New Lows', value: data.breadth.newLows.toLocaleString() },
+                                  ];
+                                }
                                 return undefined;
                               })()}
                             />
