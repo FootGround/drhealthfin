@@ -606,11 +606,13 @@ const FormulaCard = ({
   rawValue,
   score,
   c,
+  subValues,
 }: {
   signalKey: string;
   rawValue: string | number | boolean;
   score: number;
   c: { dim: string; bg: string; muted: string; text: string; border: string };
+  subValues?: { label: string; value: string }[];
 }) => {
   const formula = formulaExplanations[signalKey];
   if (!formula) return null;
@@ -661,6 +663,32 @@ const FormulaCard = ({
       >
         {formula.formula}
       </div>
+
+      {/* Input Values (price, MA, etc.) */}
+      {subValues && subValues.length > 0 && (
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: `repeat(${subValues.length}, 1fr)`,
+            gap: spacing.sm,
+            padding: spacing.sm,
+            backgroundColor: c.bg,
+            borderRadius: radius.sm,
+            marginBottom: spacing.sm,
+          }}
+        >
+          {subValues.map(({ label, value }) => (
+            <div key={label}>
+              <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.05em', color: c.muted, marginBottom: '2px', textTransform: 'uppercase' as const }}>
+                {label}
+              </div>
+              <div style={{ fontSize: '14px', fontWeight: 500, fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace", color: c.text }}>
+                {value}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Active Band Derivation */}
       {activeThreshold && (
@@ -1295,6 +1323,26 @@ const MarketCompassV6 = () => {
                               rawValue={signal.rawValue}
                               score={signal.score}
                               c={c}
+                              subValues={(() => {
+                                const fmt = (n: number) => `$${n.toFixed(2)}`;
+                                if (formulaKey === 'spyVs200MA') {
+                                  const ma = data.spy.price / (1 + data.spy.percentVs200MA / 100);
+                                  return [{ label: 'Price', value: fmt(data.spy.price) }, { label: '200-day MA', value: fmt(ma) }];
+                                }
+                                if (formulaKey === 'qqqVs200MA') {
+                                  const ma = data.qqq.price / (1 + data.qqq.percentVs200MA / 100);
+                                  return [{ label: 'Price', value: fmt(data.qqq.price) }, { label: '200-day MA', value: fmt(ma) }];
+                                }
+                                if (formulaKey === 'iwmVs200MA') {
+                                  const ma = data.iwm.price / (1 + data.iwm.percentVs200MA / 100);
+                                  return [{ label: 'Price', value: fmt(data.iwm.price) }, { label: '200-day MA', value: fmt(ma) }];
+                                }
+                                if (formulaKey === 'msciWorldVs50MA') {
+                                  const ma = data.global.acwi.price / (1 + data.global.acwi.percentVs50MA / 100);
+                                  return [{ label: 'Price', value: fmt(data.global.acwi.price) }, { label: '50-day MA', value: fmt(ma) }];
+                                }
+                                return undefined;
+                              })()}
                             />
                           </div>
                         )}
