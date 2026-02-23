@@ -1,19 +1,17 @@
 {
-  "lastUpdated": "2026-02-23T20:02:19.640Z",
+  "lastUpdated": "2026-02-23T20:16:02.368Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
       "ticker": "SPY",
-      "currentPrice": 681.39,
-      "change": -8.039999999999964,
-      "changePercent": -1.1661807580174874,
+      "currentPrice": 680.76,
+      "change": -8.669999999999959,
+      "changePercent": -1.257560593533783,
       "previousClose": 689.43,
       "high": 690,
       "low": 680.371,
       "open": 686.215,
       "sparkline": [
-        683.8,
-        683.69,
         683.39,
         682.98,
         683.225,
@@ -31,21 +29,21 @@
         681.37,
         681.17,
         681.05,
-        681.33
+        681.19,
+        680.88,
+        680.73
       ]
     },
     "QQQ": {
       "ticker": "QQQ",
-      "currentPrice": 599.92,
-      "change": -8.889999999999986,
-      "changePercent": -1.4602256861746665,
+      "currentPrice": 599.48,
+      "change": -9.329999999999927,
+      "changePercent": -1.532497823623122,
       "previousClose": 608.81,
       "high": 608.01,
       "low": 599.05,
       "open": 605.32,
       "sparkline": [
-        602.4,
-        602.33,
         602.25,
         601.78,
         602,
@@ -63,21 +61,21 @@
         600.03,
         599.72,
         599.61,
-        599.91
+        599.72,
+        599.54,
+        599.46
       ]
     },
     "IWM": {
       "ticker": "IWM",
-      "currentPrice": 260.1,
-      "change": -4.509999999999991,
-      "changePercent": -1.7043951475756738,
+      "currentPrice": 259.64,
+      "change": -4.970000000000027,
+      "changePercent": -1.8782358943350694,
       "previousClose": 264.61,
       "high": 264.37,
       "low": 258.1,
       "open": 263.24,
       "sparkline": [
-        260.32,
-        260.52,
         260.13,
         260.1,
         260.41,
@@ -95,21 +93,21 @@
         259.57,
         259.98,
         259.905,
-        260.15
+        260.01,
+        259.79,
+        259.61
       ]
     },
     "VIXY": {
       "ticker": "VIXY",
-      "currentPrice": 28.53,
-      "change": 1.1300000000000026,
-      "changePercent": 4.124087591240885,
+      "currentPrice": 28.63,
+      "change": 1.2300000000000004,
+      "changePercent": 4.489051094890513,
       "previousClose": 27.4,
       "high": 28.685,
       "low": 27.14,
       "open": 27.520000000000003,
       "sparkline": [
-        27.89,
-        27.95,
         27.99,
         28.06,
         28,
@@ -127,7 +125,9 @@
         28.39,
         28.495,
         28.59,
-        28.54
+        28.54,
+        28.56,
+        28.62
       ]
     },
     "IEF": {
@@ -140,8 +140,6 @@
       "low": 97.14,
       "open": 97.14,
       "sparkline": [
-        97.465,
-        97.465,
         97.485,
         97.485,
         97.48,
@@ -159,14 +157,16 @@
         97.47,
         97.475,
         97.465,
-        97.465
+        97.47,
+        97.455,
+        97.47
       ]
     },
     "URTH": {
       "ticker": "URTH",
-      "currentPrice": 189.39,
-      "change": -1.8000000000000114,
-      "changePercent": -0.9414718343009632,
+      "currentPrice": 189.25,
+      "change": -1.9399999999999977,
+      "changePercent": -1.0146974214132527,
       "previousClose": 191.19,
       "high": 191.43,
       "low": 189.045,
@@ -174,9 +174,9 @@
     },
     "ACWI": {
       "ticker": "ACWI",
-      "currentPrice": 146.12,
-      "change": -1.509999999999991,
-      "changePercent": -1.0228273386168063,
+      "currentPrice": 146,
+      "change": -1.6299999999999955,
+      "changePercent": -1.1041116304274168,
       "previousClose": 147.63,
       "high": 147.73,
       "low": 145.84,
@@ -184,9 +184,9 @@
     },
     "RSP": {
       "ticker": "RSP",
-      "currentPrice": 201.97,
-      "change": -2.1200000000000045,
-      "changePercent": -1.0387574109461535,
+      "currentPrice": 201.75,
+      "change": -2.3400000000000034,
+      "changePercent": -1.146552991327357,
       "previousClose": 204.09,
       "high": 204.08,
       "low": 201.045,
@@ -194,9 +194,9 @@
     },
     "VTV": {
       "ticker": "VTV",
-      "currentPrice": 205.36,
-      "change": -1.5199999999999818,
-      "changePercent": -0.7347254447022341,
+      "currentPrice": 205.16,
+      "change": -1.7199999999999989,
+      "changePercent": -0.8313998453209583,
       "previousClose": 206.88,
       "high": 207.62,
       "low": 204.625,
@@ -204,19 +204,19 @@
     },
     "VUG": {
       "ticker": "VUG",
-      "currentPrice": 457.86,
-      "change": -7.180000000000007,
-      "changePercent": -1.543953208326167,
+      "currentPrice": 457.48,
+      "change": -7.560000000000002,
+      "changePercent": -1.6256666093239294,
       "previousClose": 465.04,
       "high": 465.25,
-      "low": 457.52,
+      "low": 457.35,
       "open": 464
     },
     "XLK": {
       "ticker": "XLK",
-      "currentPrice": 138.12,
-      "change": -2.759999999999991,
-      "changePercent": -1.9591141396933496,
+      "currentPrice": 137.97,
+      "change": -2.9099999999999966,
+      "changePercent": -2.065587734241906,
       "previousClose": 140.88,
       "high": 140.65,
       "low": 137.89,
@@ -224,9 +224,9 @@
     },
     "XLF": {
       "ticker": "XLF",
-      "currentPrice": 50.84,
-      "change": -1.6499999999999986,
-      "changePercent": -3.1434558963612087,
+      "currentPrice": 50.73,
+      "change": -1.7600000000000051,
+      "changePercent": -3.3530196227853017,
       "previousClose": 52.49,
       "high": 52.47,
       "low": 50.66,
@@ -234,9 +234,9 @@
     },
     "XLE": {
       "ticker": "XLE",
-      "currentPrice": 55.2,
-      "change": 0.3200000000000003,
-      "changePercent": 0.5830903790087468,
+      "currentPrice": 55.15,
+      "change": 0.269999999999996,
+      "changePercent": 0.4919825072886225,
       "previousClose": 54.88,
       "high": 55.93,
       "low": 54.63,
@@ -244,9 +244,9 @@
     },
     "XLV": {
       "ticker": "XLV",
-      "currentPrice": 158.52,
-      "change": 1.700000000000017,
-      "changePercent": 1.0840454023721573,
+      "currentPrice": 158.33,
+      "change": 1.5100000000000193,
+      "changePercent": 0.962887386812919,
       "previousClose": 156.82,
       "high": 158.68,
       "low": 156.2,
@@ -254,9 +254,9 @@
     },
     "XLY": {
       "ticker": "XLY",
-      "currentPrice": 114.58,
-      "change": -2.8700000000000045,
-      "changePercent": -2.4435930183056658,
+      "currentPrice": 114.52,
+      "change": -2.930000000000007,
+      "changePercent": -2.4946785866326153,
       "previousClose": 117.45,
       "high": 116.85,
       "low": 113.86,
@@ -264,9 +264,9 @@
     },
     "XLP": {
       "ticker": "XLP",
-      "currentPrice": 89.1,
-      "change": 1.2099999999999937,
-      "changePercent": 1.376720901126401,
+      "currentPrice": 89.09,
+      "change": 1.2000000000000028,
+      "changePercent": 1.3653430424394162,
       "previousClose": 87.89,
       "high": 89.17,
       "low": 87.68,
@@ -274,9 +274,9 @@
     },
     "AAPL": {
       "ticker": "AAPL",
-      "currentPrice": 266.62,
-      "change": 2.0400000000000205,
-      "changePercent": 0.7710333358530579,
+      "currentPrice": 266.7,
+      "change": 2.1200000000000045,
+      "changePercent": 0.8012699372590538,
       "previousClose": 264.58,
       "high": 269.43,
       "low": 263.381,
@@ -284,19 +284,19 @@
     },
     "MSFT": {
       "ticker": "MSFT",
-      "currentPrice": 384.02,
-      "change": -13.210000000000036,
-      "changePercent": -3.3255292903355826,
+      "currentPrice": 383.52,
+      "change": -13.710000000000036,
+      "changePercent": -3.4514009515897683,
       "previousClose": 397.23,
       "high": 396.36,
-      "low": 383.6,
+      "low": 383.3,
       "open": 396.36
     },
     "NVDA": {
       "ticker": "NVDA",
-      "currentPrice": 190.58,
-      "change": 0.7600000000000193,
-      "changePercent": 0.4003793067116317,
+      "currentPrice": 190.33,
+      "change": 0.5100000000000193,
+      "changePercent": 0.2686755873985983,
       "previousClose": 189.82,
       "high": 193.95,
       "low": 188.81,
@@ -304,9 +304,9 @@
     },
     "AMZN": {
       "ticker": "AMZN",
-      "currentPrice": 204.13,
-      "change": -5.980000000000018,
-      "changePercent": -2.846128218552195,
+      "currentPrice": 204.34,
+      "change": -5.77000000000001,
+      "changePercent": -2.7461805720812955,
       "previousClose": 210.11,
       "high": 208.64,
       "low": 203.11,
@@ -314,9 +314,9 @@
     },
     "JPM": {
       "ticker": "JPM",
-      "currentPrice": 298.13,
-      "change": -12.660000000000025,
-      "changePercent": -4.073490138035337,
+      "currentPrice": 297.75,
+      "change": -13.04000000000002,
+      "changePercent": -4.195759194311278,
       "previousClose": 310.79,
       "high": 311,
       "low": 295.1,
@@ -326,28 +326,28 @@
   "compassData": {
     "direction": {
       "spy": {
-        "price": 681.17,
-        "ma200": 651.77,
-        "percentVs200MA": 4.51,
-        "dailyChange": -1.2
+        "price": 680.98,
+        "ma200": 651.76,
+        "percentVs200MA": 4.48,
+        "dailyChange": -1.23
       },
       "qqq": {
-        "price": 599.65,
+        "price": 599.7,
         "ma200": 584.28,
-        "percentVs200MA": 2.63,
+        "percentVs200MA": 2.64,
         "dailyChange": -1.5
       },
       "iwm": {
-        "price": 260.13,
+        "price": 259.87,
         "ma200": 236.57,
-        "percentVs200MA": 9.96,
-        "dailyChange": -1.69
+        "percentVs200MA": 9.85,
+        "dailyChange": -1.79
       }
     },
     "volatility": {
       "vix": {
-        "value": 21.39,
-        "dailyChange": 2.3,
+        "value": 21.45,
+        "dailyChange": 2.36,
         "isContango": true
       },
       "putCall": {
@@ -383,9 +383,9 @@
     },
     "global": {
       "acwi": {
-        "price": 146.09,
-        "percentVs50MA": 1.25,
-        "dailyChange": -1.05
+        "price": 146.02,
+        "percentVs50MA": 1.21,
+        "dailyChange": -1.09
       },
       "vstoxx": {
         "value": 17,
