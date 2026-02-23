@@ -1349,8 +1349,9 @@ const MarketCompassV6 = () => {
                                 }
                                 if (formulaKey === 'percentAbove200MA') {
                                   const chg = data.breadth.percentAbove200MAChange;
+                                  const estCount = Math.round(data.breadth.percentAbove200MA / 100 * 500);
                                   return [
-                                    { label: '% Above 200d MA', value: `${data.breadth.percentAbove200MA}%` },
+                                    { label: 'Est. Stocks Above 200d MA', value: `~${estCount} / 500` },
                                     { label: 'Wk/Wk Change', value: `${chg >= 0 ? '+' : ''}${chg}%` },
                                   ];
                                 }

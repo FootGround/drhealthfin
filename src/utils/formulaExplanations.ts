@@ -93,7 +93,7 @@ export const formulaExplanations: Record<string, FormulaExplanation> = {
 
   percentAbove200MA: {
     name: '% of Stocks Above 200-Day MA',
-    formula: 'Count of S&P 500 stocks above their individual 200-day MA ÷ total stocks × 100. Stepped score based on that percentage.',
+    formula: '% above 200d MA = stocks above 200d MA ÷ 500 × 100. The data source reports this percentage directly. Stepped score based on that percentage.',
     bounds: '0 ≤ score ≤ 100',
     thresholds: [
       { range: '≥ 80%', label: 'Extremely strong', scoreRange: '100' },
