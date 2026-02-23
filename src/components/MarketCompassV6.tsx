@@ -690,30 +690,69 @@ const FormulaCard = ({
         </div>
       )}
 
-      {/* Active Band Derivation */}
-      {activeThreshold && (
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: spacing.sm,
-            padding: spacing.sm,
-            backgroundColor: c.bg,
-            borderRadius: radius.sm,
-            marginBottom: spacing.md,
-            fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace",
-            fontSize: '13px',
-            flexWrap: 'wrap' as const,
-          }}
-        >
-          <span style={{ color: c.text, fontWeight: 500 }}>{displayRaw}</span>
-          <span style={{ color: c.muted }}>→</span>
-          <span style={{ color: c.muted }}>{activeThreshold.range}</span>
-          <span style={{ color: c.muted }}>({activeThreshold.label})</span>
-          <span style={{ color: c.muted }}>→</span>
-          <span style={{ color: c.text, fontWeight: 600 }}>Score: {score}</span>
+      {/* Full Threshold Table */}
+      <div style={{ marginBottom: spacing.sm }}>
+        <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.05em', color: c.muted, marginBottom: spacing.xs, textTransform: 'uppercase' as const }}>
+          Score Table
         </div>
-      )}
+        <div style={{ borderRadius: radius.sm, overflow: 'hidden', border: `1px solid ${c.border}` }}>
+          {formula.thresholds.map((t, i) => {
+            const isActive = (() => {
+              if (t.scoreRange === score.toString()) return true;
+              if (t.scoreRange.includes('-')) {
+                const [lo, hi] = t.scoreRange.split('-').map(Number);
+                return score >= lo && score <= hi;
+              }
+              return false;
+            })();
+            return (
+              <div
+                key={i}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr auto',
+                  gap: spacing.sm,
+                  padding: `5px ${spacing.sm}`,
+                  backgroundColor: isActive ? c.border : (i % 2 === 0 ? c.bg : 'transparent'),
+                  borderLeft: isActive ? `2px solid ${dsColors.accent.primary}` : '2px solid transparent',
+                }}
+              >
+                <span style={{ fontSize: '12px', fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace", color: isActive ? c.text : c.muted, fontWeight: isActive ? 600 : 400 }}>
+                  {t.range}
+                </span>
+                <span style={{ fontSize: '12px', color: isActive ? c.text : c.muted, fontWeight: isActive ? 500 : 400 }}>
+                  {t.label}
+                </span>
+                <span style={{ fontSize: '12px', fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace", color: isActive ? c.text : c.muted, fontWeight: isActive ? 600 : 400, textAlign: 'right' as const }}>
+                  {t.scoreRange}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Current Value → Band → Score derivation */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: spacing.sm,
+          padding: spacing.sm,
+          backgroundColor: c.bg,
+          borderRadius: radius.sm,
+          marginBottom: spacing.md,
+          fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace",
+          fontSize: '13px',
+          flexWrap: 'wrap' as const,
+        }}
+      >
+        <span style={{ color: c.text, fontWeight: 500 }}>{displayRaw}</span>
+        <span style={{ color: c.muted }}>→</span>
+        <span style={{ color: c.muted }}>{activeThreshold ? `${activeThreshold.range} (${activeThreshold.label})` : 'see table'}</span>
+        <span style={{ color: c.muted }}>→</span>
+        <span style={{ color: c.text, fontWeight: 600 }}>Score: {score}</span>
+      </div>
 
       {/* Raw / Score Grid */}
       <div
