@@ -1360,6 +1360,26 @@ const MarketCompassV6 = () => {
                                     { label: 'New Lows', value: data.breadth.newLows.toLocaleString() },
                                   ];
                                 }
+                                if (formulaKey === 'vix') {
+                                  const chg = data.vix.dailyChange;
+                                  return [
+                                    { label: 'VIX Level', value: data.vix.value.toFixed(2) },
+                                    { label: 'Daily Change', value: `${chg >= 0 ? '+' : ''}${chg.toFixed(2)}` },
+                                  ];
+                                }
+                                if (formulaKey === 'putCallRatio') {
+                                  const chg = data.putCall.change;
+                                  return [
+                                    { label: 'P/C Ratio', value: data.putCall.ratio.toFixed(2) },
+                                    { label: '1d Change', value: `${chg >= 0 ? '+' : ''}${chg.toFixed(2)}` },
+                                  ];
+                                }
+                                if (formulaKey === 'vixTermStructure') {
+                                  return [
+                                    { label: 'VIX Spot', value: data.vix.value.toFixed(2) },
+                                    { label: 'Structure', value: data.vix.isContango ? 'Contango' : 'Backwardation' },
+                                  ];
+                                }
                                 return undefined;
                               })()}
                             />

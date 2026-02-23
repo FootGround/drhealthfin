@@ -129,7 +129,7 @@ export const formulaExplanations: Record<string, FormulaExplanation> = {
 
   vix: {
     name: 'VIX (Volatility Index)',
-    formula: 'Inverse scoring: lower VIX = higher score',
+    formula: 'CBOE Volatility Index — measures options market expectations of 30-day S&P 500 volatility. Lower value → higher score (inverse relationship).',
     bounds: '0 ≤ score ≤ 100',
     thresholds: [
       { range: '≤ 12', label: 'Very calm', scoreRange: '100' },
@@ -140,12 +140,12 @@ export const formulaExplanations: Record<string, FormulaExplanation> = {
       { range: '28 to 35', label: 'Very high', scoreRange: '20' },
       { range: '> 35', label: 'Extreme', scoreRange: '0' },
     ],
-    rationale: 'Lower volatility indicates healthier market conditions. VIX below 20 is considered calm.',
+    rationale: 'The VIX is nicknamed the "fear gauge." It rises when investors rush to buy put options to hedge against a drop, and falls when they stop worrying. Historically, VIX above 30 marks periods of acute fear — often near market bottoms. VIX below 12 marks complacent bull markets where traders see little risk. Because it\'s derived from live option prices, it updates in real time and tends to spike during selloffs rather than lag them — making it both a concurrent and forward-looking stress indicator.',
   },
 
   putCallRatio: {
     name: 'Put/Call Ratio',
-    formula: 'Contrarian scoring based on ratio bands',
+    formula: 'Total put options volume ÷ total call options volume. A ratio > 1.0 means more puts than calls are being bought. Contrarian scoring: higher fear → higher score.',
     bounds: '10 ≤ score ≤ 90',
     thresholds: [
       { range: '≥ 1.3', label: 'High fear (bullish)', scoreRange: '90' },
@@ -156,18 +156,18 @@ export const formulaExplanations: Record<string, FormulaExplanation> = {
       { range: '0.5 to 0.6', label: 'Low fear', scoreRange: '25' },
       { range: '< 0.5', label: 'Extreme greed', scoreRange: '10' },
     ],
-    rationale: 'Higher put/call ratio (more puts than calls) indicates fear, which is contrarian bullish.',
+    rationale: 'Options traders buy puts to hedge or bet against a drop, and calls to express upside. A ratio above 1.0 means put volume is dominating — traders are fearful. Contrarian logic: when everyone is buying insurance, the risk event may already be priced in. Conversely, when the ratio falls below 0.6, traders are buying calls aggressively with little hedging — historically a sign of frothy sentiment and elevated downside risk. Unlike surveys, this signal is measured in real money placed in real markets.',
   },
 
   vixTermStructure: {
     name: 'VIX Term Structure',
-    formula: 'Binary: Contango = 70, Backwardation = 30',
+    formula: 'Binary signal. Compares VIX (30-day implied vol) to VIX3M (90-day implied vol). Contango: near-term vol < longer-term vol (normal). Backwardation: near-term vol > longer-term vol (stress).',
     bounds: '30 or 70 (binary)',
     thresholds: [
       { range: 'Contango', label: 'Normal', scoreRange: '70' },
       { range: 'Backwardation', label: 'Stress', scoreRange: '30' },
     ],
-    rationale: 'Contango (futures > spot) is normal market structure. Backwardation indicates immediate fear.',
+    rationale: 'Normally, longer-dated volatility is priced higher than near-term vol — uncertainty compounds over time. This is "contango." When spot VIX spikes above VIX3M ("backwardation"), it means the market is panicking about an immediate risk more than the future. Backwardation clusters around flash crashes, geopolitical shocks, and acute selloffs. When structure normalizes back to contango after a spike, it often marks the turning point — the near-term panic has passed.',
   },
 
   // =========================================================================
