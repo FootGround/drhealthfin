@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-02-23T21:47:30.833Z",
-  "marketOpen": true,
+  "lastUpdated": "2026-02-24T13:33:23.426Z",
+  "marketOpen": false,
   "instruments": {
     "SPY": {
       "ticker": "SPY",
@@ -346,8 +346,8 @@
     },
     "volatility": {
       "vix": {
-        "value": 21.01,
-        "dailyChange": 1.92,
+        "value": 21.4,
+        "dailyChange": 0.39,
         "isContango": true
       },
       "putCall": {
