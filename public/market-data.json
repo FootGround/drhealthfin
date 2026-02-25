@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-25T21:13:18.336Z",
+  "lastUpdated": "2026-02-25T21:17:52.466Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -36,9 +36,9 @@
     },
     "QQQ": {
       "ticker": "QQQ",
-      "currentPrice": 616.42,
-      "change": 8.549999999999955,
-      "changePercent": 1.4065507427574901,
+      "currentPrice": 616.68,
+      "change": 8.809999999999945,
+      "changePercent": 1.4493230460460205,
       "previousClose": 607.87,
       "high": 616.83,
       "low": 611,
@@ -132,9 +132,9 @@
     },
     "IEF": {
       "ticker": "IEF",
-      "currentPrice": 97.335,
-      "change": -0.08500000000000796,
-      "changePercent": -0.0872510778074399,
+      "currentPrice": 97.34,
+      "change": -0.0799999999999983,
+      "changePercent": -0.08211866146581635,
       "previousClose": 97.42,
       "high": 97.42,
       "low": 97.265,
@@ -274,9 +274,9 @@
     },
     "AAPL": {
       "ticker": "AAPL",
-      "currentPrice": 274.24,
-      "change": 2.1000000000000227,
-      "changePercent": 0.7716616447416854,
+      "currentPrice": 274.23,
+      "change": 2.090000000000032,
+      "changePercent": 0.7679870654810141,
       "previousClose": 272.14,
       "high": 274.94,
       "low": 271.05,
@@ -284,9 +284,9 @@
     },
     "MSFT": {
       "ticker": "MSFT",
-      "currentPrice": 400.635,
-      "change": 11.634999999999991,
-      "changePercent": 2.991002570694085,
+      "currentPrice": 400.6,
+      "change": 11.600000000000023,
+      "changePercent": 2.9820051413881807,
       "previousClose": 389,
       "high": 401.47,
       "low": 390.16,
@@ -294,9 +294,9 @@
     },
     "NVDA": {
       "ticker": "NVDA",
-      "currentPrice": 195.625,
-      "change": 2.7750000000000057,
-      "changePercent": 1.4389421830438196,
+      "currentPrice": 195.56,
+      "change": 2.710000000000008,
+      "changePercent": 1.40523723100856,
       "previousClose": 192.85,
       "high": 197.6299,
       "low": 193.79,
@@ -304,9 +304,9 @@
     },
     "AMZN": {
       "ticker": "AMZN",
-      "currentPrice": 210.63,
-      "change": 2.069999999999993,
-      "changePercent": 0.9925201380897551,
+      "currentPrice": 210.64,
+      "change": 2.079999999999984,
+      "changePercent": 0.9973149213655467,
       "previousClose": 208.56,
       "high": 211.59,
       "low": 208.93,
@@ -332,10 +332,10 @@
         "dailyChange": 0.82
       },
       "qqq": {
-        "price": 616.42,
+        "price": 616.68,
         "ma200": 585.56,
-        "percentVs200MA": 5.27,
-        "dailyChange": 1.41
+        "percentVs200MA": 5.32,
+        "dailyChange": 1.45
       },
       "iwm": {
         "price": 264.57,
@@ -346,8 +346,8 @@
     },
     "volatility": {
       "vix": {
-        "value": 17.98,
-        "dailyChange": -1.57,
+        "value": 17.97,
+        "dailyChange": -1.58,
         "isContango": true
       },
       "putCall": {
