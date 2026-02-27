@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-27T21:09:12.242Z",
+  "lastUpdated": "2026-02-27T21:25:21.169Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -36,9 +36,9 @@
     },
     "QQQ": {
       "ticker": "QQQ",
-      "currentPrice": 607.41,
-      "change": -1.830000000000041,
-      "changePercent": -0.30037423675399527,
+      "currentPrice": 607.29,
+      "change": -1.9500000000000455,
+      "changePercent": -0.32007090801655264,
       "previousClose": 609.24,
       "high": 608.32,
       "low": 602.19,
@@ -184,9 +184,9 @@
     },
     "RSP": {
       "ticker": "RSP",
-      "currentPrice": 204.94,
-      "change": 0.21000000000000796,
-      "changePercent": 0.10257412201436426,
+      "currentPrice": 204.97,
+      "change": 0.2400000000000091,
+      "changePercent": 0.1172275680164163,
       "previousClose": 204.73,
       "high": 205.08,
       "low": 202.91,
@@ -224,9 +224,9 @@
     },
     "XLF": {
       "ticker": "XLF",
-      "currentPrice": 51.4,
-      "change": -1.1000000000000014,
-      "changePercent": -2.095238095238098,
+      "currentPrice": 51.43,
+      "change": -1.0700000000000003,
+      "changePercent": -2.0380952380952384,
       "previousClose": 52.5,
       "high": 52.06,
       "low": 51.01,
@@ -274,9 +274,9 @@
     },
     "AAPL": {
       "ticker": "AAPL",
-      "currentPrice": 264.17,
-      "change": -8.779999999999973,
-      "changePercent": -3.2167063564755347,
+      "currentPrice": 264.18,
+      "change": -8.769999999999982,
+      "changePercent": -3.2130426818098488,
       "previousClose": 272.95,
       "high": 272.81,
       "low": 262.89,
@@ -304,9 +304,9 @@
     },
     "AMZN": {
       "ticker": "AMZN",
-      "currentPrice": 209.971,
-      "change": 2.051000000000016,
-      "changePercent": 0.9864370911889266,
+      "currentPrice": 210,
+      "change": 2.0800000000000125,
+      "changePercent": 1.0003847633705332,
       "previousClose": 207.92,
       "high": 210.33,
       "low": 205.2,
@@ -326,10 +326,10 @@
   "compassData": {
     "direction": {
       "spy": {
-        "price": 686.16,
+        "price": 685.99,
         "ma200": 654.18,
-        "percentVs200MA": 4.89,
-        "dailyChange": -0.46
+        "percentVs200MA": 4.86,
+        "dailyChange": -0.48
       },
       "qqq": {
         "price": 607.29,
@@ -346,8 +346,8 @@
     },
     "volatility": {
       "vix": {
-        "value": 20.06,
-        "dailyChange": 1.43,
+        "value": 19.93,
+        "dailyChange": 1.3,
         "isContango": true
       },
       "putCall": {
