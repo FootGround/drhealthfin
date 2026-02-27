@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-27T20:29:28.693Z",
+  "lastUpdated": "2026-02-27T20:30:08.974Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -31,7 +31,7 @@
         685.22,
         685.59,
         685.86,
-        685.69
+        685.76
       ]
     },
     "QQQ": {
@@ -63,7 +63,7 @@
         606.67,
         606.99,
         607.325,
-        607.14
+        607.19
       ]
     },
     "IWM": {
@@ -95,7 +95,7 @@
         260.73,
         260.83,
         261.16,
-        261.175
+        261.2
       ]
     },
     "VIXY": {
@@ -127,7 +127,7 @@
         27.93,
         27.85,
         27.8,
-        27.86
+        27.855
       ]
     },
     "IEF": {
@@ -326,28 +326,28 @@
   "compassData": {
     "direction": {
       "spy": {
-        "price": 685.64,
+        "price": 685.57,
         "ma200": 654.18,
-        "percentVs200MA": 4.81,
-        "dailyChange": -0.53
+        "percentVs200MA": 4.8,
+        "dailyChange": -0.54
       },
       "qqq": {
-        "price": 607.012,
+        "price": 606.91,
         "ma200": 586.66,
-        "percentVs200MA": 3.47,
-        "dailyChange": -0.37
+        "percentVs200MA": 3.45,
+        "dailyChange": -0.38
       },
       "iwm": {
-        "price": 261.09,
+        "price": 261.22,
         "ma200": 237.81,
-        "percentVs200MA": 9.79,
-        "dailyChange": -1.84
+        "percentVs200MA": 9.84,
+        "dailyChange": -1.79
       }
     },
     "volatility": {
       "vix": {
-        "value": 20.28,
-        "dailyChange": 1.65,
+        "value": 20.14,
+        "dailyChange": 1.51,
         "isContango": true
       },
       "putCall": {
