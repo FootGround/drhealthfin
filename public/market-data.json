@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-27T20:45:21.310Z",
+  "lastUpdated": "2026-02-27T20:46:21.104Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -12,7 +12,6 @@
       "low": 681.64,
       "open": 688.23,
       "sparkline": [
-        683.9,
         683.88,
         683.96,
         683.73,
@@ -31,7 +30,8 @@
         685.6,
         685.38,
         684.635,
-        685.03
+        685.03,
+        685.3
       ]
     },
     "QQQ": {
@@ -44,7 +44,6 @@
       "low": 602.19,
       "open": 609.11,
       "sparkline": [
-        605.3,
         605.28,
         605.29,
         605.21,
@@ -63,7 +62,8 @@
         606.93,
         606.47,
         605.665,
-        605.92
+        605.92,
+        606.13
       ]
     },
     "IWM": {
@@ -76,7 +76,6 @@
       "low": 259.77,
       "open": 264.43,
       "sparkline": [
-        260.175,
         260.13,
         260.19,
         260.2,
@@ -95,7 +94,8 @@
         261.06,
         261.11,
         260.77,
-        260.83
+        260.83,
+        260.945
       ]
     },
     "VIXY": {
@@ -127,7 +127,7 @@
         27.86,
         27.955,
         28.08,
-        27.94
+        27.98
       ]
     },
     "IEF": {
@@ -159,7 +159,7 @@
         97.96,
         97.98,
         97.995,
-        97.985
+        97.99
       ]
     },
     "URTH": {
@@ -326,28 +326,28 @@
   "compassData": {
     "direction": {
       "spy": {
-        "price": 685.18,
+        "price": 685.29,
         "ma200": 654.18,
-        "percentVs200MA": 4.74,
-        "dailyChange": -0.6
+        "percentVs200MA": 4.76,
+        "dailyChange": -0.58
       },
       "qqq": {
-        "price": 606.11,
+        "price": 606.13,
         "ma200": 586.65,
         "percentVs200MA": 3.32,
         "dailyChange": -0.51
       },
       "iwm": {
-        "price": 260.96,
+        "price": 260.943,
         "ma200": 237.81,
-        "percentVs200MA": 9.74,
-        "dailyChange": -1.89
+        "percentVs200MA": 9.73,
+        "dailyChange": -1.9
       }
     },
     "volatility": {
       "vix": {
-        "value": 19.92,
-        "dailyChange": 1.29,
+        "value": 19.89,
+        "dailyChange": 1.26,
         "isContango": true
       },
       "putCall": {
@@ -385,7 +385,7 @@
       "acwi": {
         "price": 147.34,
         "percentVs50MA": 1.81,
-        "dailyChange": -0.42
+        "dailyChange": -0.41
       },
       "vstoxx": {
         "value": 17,
