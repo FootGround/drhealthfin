@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-02T21:12:45.050Z",
+  "lastUpdated": "2026-03-02T21:29:48.477Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -294,9 +294,9 @@
     },
     "NVDA": {
       "ticker": "NVDA",
-      "currentPrice": 182.373,
-      "change": 5.182999999999993,
-      "changePercent": 2.925108640442459,
+      "currentPrice": 182.48,
+      "change": 5.289999999999992,
+      "changePercent": 2.985495795473781,
       "previousClose": 177.19,
       "high": 183.46,
       "low": 174.64,
@@ -304,9 +304,9 @@
     },
     "AMZN": {
       "ticker": "AMZN",
-      "currentPrice": 208.203,
-      "change": -1.796999999999997,
-      "changePercent": -0.8557142857142843,
+      "currentPrice": 208.39,
+      "change": -1.6100000000000136,
+      "changePercent": -0.7666666666666732,
       "previousClose": 210,
       "high": 209.73,
       "low": 203.46,
@@ -346,8 +346,8 @@
     },
     "volatility": {
       "vix": {
-        "value": 21.06,
-        "dailyChange": 1.2,
+        "value": 21.45,
+        "dailyChange": 1.59,
         "isContango": true
       },
       "putCall": {
