@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-02T15:17:14.764Z",
+  "lastUpdated": "2026-03-02T15:18:19.058Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -95,7 +95,7 @@
         260.95,
         261.2,
         261.955,
-        261.82
+        261.84
       ]
     },
     "VIXY": {
@@ -108,7 +108,6 @@
       "low": 28.34,
       "open": 29.62,
       "sparkline": [
-        28.13,
         27.945,
         27.855,
         27.83,
@@ -127,7 +126,8 @@
         28.8,
         28.62,
         28.48,
-        28.415
+        28.415,
+        28.36
       ]
     },
     "IEF": {
@@ -140,7 +140,6 @@
       "low": 97.11,
       "open": 97.7,
       "sparkline": [
-        97.98,
         97.975,
         97.955,
         97.955,
@@ -159,7 +158,8 @@
         97.265,
         97.18,
         97.17,
-        97.14
+        97.14,
+        97.115
       ]
     },
     "URTH": {
@@ -326,28 +326,28 @@
   "compassData": {
     "direction": {
       "spy": {
-        "price": 685.3,
+        "price": 684.88,
         "ma200": 654.67,
-        "percentVs200MA": 4.68,
-        "dailyChange": -0.1
+        "percentVs200MA": 4.61,
+        "dailyChange": -0.16
       },
       "qqq": {
-        "price": 606.07,
+        "price": 605.53,
         "ma200": 587.11,
-        "percentVs200MA": 3.23,
-        "dailyChange": -0.2
+        "percentVs200MA": 3.14,
+        "dailyChange": -0.29
       },
       "iwm": {
-        "price": 261.97,
-        "ma200": 238.08,
-        "percentVs200MA": 10.04,
-        "dailyChange": 0.21
+        "price": 261.63,
+        "ma200": 238.07,
+        "percentVs200MA": 9.89,
+        "dailyChange": 0.08
       }
     },
     "volatility": {
       "vix": {
-        "value": 21.61,
-        "dailyChange": 1.75,
+        "value": 21.62,
+        "dailyChange": 1.76,
         "isContango": true
       },
       "putCall": {
@@ -383,9 +383,9 @@
     },
     "global": {
       "acwi": {
-        "price": 146.29,
-        "percentVs50MA": 1,
-        "dailyChange": -0.74
+        "price": 146.16,
+        "percentVs50MA": 0.91,
+        "dailyChange": -0.83
       },
       "vstoxx": {
         "value": 17,
