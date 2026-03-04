@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-03-03T21:57:58.829Z",
-  "marketOpen": true,
+  "lastUpdated": "2026-03-04T13:27:18.285Z",
+  "marketOpen": false,
   "instruments": {
     "SPY": {
       "ticker": "SPY",
@@ -138,7 +138,29 @@
       "previousClose": 97.12,
       "high": 97.15,
       "low": 96.64,
-      "open": 96.665
+      "open": 96.665,
+      "sparkline": [
+        97.055,
+        97.049896,
+        97.069901,
+        97.115,
+        97.095001,
+        97.050003,
+        97.053596,
+        97.035004,
+        97.035004,
+        97.040001,
+        97.062897,
+        97.059998,
+        97.065002,
+        97.035004,
+        97.040001,
+        97.035004,
+        97.025002,
+        97.020103,
+        97.0049973,
+        97.014999
+      ]
     },
     "URTH": {
       "ticker": "URTH",
@@ -324,9 +346,9 @@
     },
     "volatility": {
       "vix": {
-        "value": 23.57,
-        "dailyChange": 2.13,
-        "isContango": false
+        "value": 22.28,
+        "dailyChange": -1.29,
+        "isContango": true
       },
       "putCall": {
         "ratio": 0.85,
