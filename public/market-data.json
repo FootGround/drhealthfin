@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-06T13:50:18.205Z",
+  "lastUpdated": "2026-03-06T14:15:20.480Z",
   "marketOpen": false,
   "instruments": {
     "SPY": {
@@ -346,8 +346,8 @@
     },
     "volatility": {
       "vix": {
-        "value": 25.57,
-        "dailyChange": 1.82,
+        "value": 27.74,
+        "dailyChange": 3.99,
         "isContango": false
       },
       "putCall": {
