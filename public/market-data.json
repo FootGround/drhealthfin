@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-09T20:15:52.282Z",
+  "lastUpdated": "2026-03-09T20:26:39.539Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -338,17 +338,17 @@
         "dailyChange": 1.34
       },
       "iwm": {
-        "price": 253.62,
+        "price": 253.57,
         "ma200": 239.28,
-        "percentVs200MA": 5.99,
-        "dailyChange": 1.09
+        "percentVs200MA": 5.97,
+        "dailyChange": 1.07
       }
     },
     "volatility": {
       "vix": {
-        "value": 24.88,
-        "dailyChange": -4.61,
-        "isContango": true
+        "value": 25.72,
+        "dailyChange": -3.77,
+        "isContango": false
       },
       "putCall": {
         "ratio": 0.85,
