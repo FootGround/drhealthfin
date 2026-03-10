@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-10T20:10:37.878Z",
+  "lastUpdated": "2026-03-10T20:15:51.979Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -326,10 +326,10 @@
   "compassData": {
     "direction": {
       "spy": {
-        "price": 677.05,
+        "price": 677.18,
         "ma200": 657.34,
-        "percentVs200MA": 3,
-        "dailyChange": -0.18
+        "percentVs200MA": 3.02,
+        "dailyChange": -0.16
       },
       "qqq": {
         "price": 607.77,
@@ -338,16 +338,16 @@
         "dailyChange": 0
       },
       "iwm": {
-        "price": 253.39,
+        "price": 253.36,
         "ma200": 239.53,
-        "percentVs200MA": 5.78,
-        "dailyChange": -0.09
+        "percentVs200MA": 5.77,
+        "dailyChange": -0.1
       }
     },
     "volatility": {
       "vix": {
-        "value": 25.67,
-        "dailyChange": 0.17,
+        "value": 25.46,
+        "dailyChange": -0.04,
         "isContango": true
       },
       "putCall": {
