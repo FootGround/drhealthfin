@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-12T21:57:56.915Z",
+  "lastUpdated": "2026-03-13T13:28:44.570Z",
   "marketOpen": false,
   "instruments": {
     "SPY": {
@@ -327,28 +327,28 @@
     "direction": {
       "spy": {
         "price": 666.06,
-        "ma200": 658.24,
-        "percentVs200MA": 1.19,
-        "dailyChange": -1.52
+        "ma200": 658.61,
+        "percentVs200MA": 1.13,
+        "dailyChange": 0
       },
       "qqq": {
         "price": 597.26,
-        "ma200": 590.64,
-        "percentVs200MA": 1.12,
-        "dailyChange": -1.72
+        "ma200": 591.02,
+        "percentVs200MA": 1.06,
+        "dailyChange": 0
       },
       "iwm": {
         "price": 247.41,
-        "ma200": 240.01,
-        "percentVs200MA": 3.09,
-        "dailyChange": -2.15
+        "ma200": 240.2,
+        "percentVs200MA": 3,
+        "dailyChange": 0
       }
     },
     "volatility": {
       "vix": {
-        "value": 27.29,
-        "dailyChange": 3.06,
-        "isContango": false
+        "value": 25.63,
+        "dailyChange": -1.66,
+        "isContango": true
       },
       "putCall": {
         "ratio": 0.85,
@@ -384,8 +384,8 @@
     "global": {
       "acwi": {
         "price": 140.45,
-        "percentVs50MA": -3.19,
-        "dailyChange": -1.74
+        "percentVs50MA": -3.17,
+        "dailyChange": 0
       },
       "vstoxx": {
         "value": 17,
