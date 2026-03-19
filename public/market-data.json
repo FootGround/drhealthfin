@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-19T20:13:29.557Z",
+  "lastUpdated": "2026-03-19T20:17:53.073Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -304,9 +304,9 @@
     },
     "AMZN": {
       "ticker": "AMZN",
-      "currentPrice": 208.77,
-      "change": -1.0999999999999943,
-      "changePercent": -0.5241339877066729,
+      "currentPrice": 208.76,
+      "change": -1.1100000000000136,
+      "changePercent": -0.5288988421403791,
       "previousClose": 209.87,
       "high": 209.12,
       "low": 206.05,
@@ -346,8 +346,8 @@
     },
     "volatility": {
       "vix": {
-        "value": 24.38,
-        "dailyChange": -0.71,
+        "value": 24.36,
+        "dailyChange": -0.73,
         "isContango": true
       },
       "putCall": {
