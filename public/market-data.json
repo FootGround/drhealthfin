@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-20T20:14:18.916Z",
+  "lastUpdated": "2026-03-20T20:31:05.446Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -284,9 +284,9 @@
     },
     "MSFT": {
       "ticker": "MSFT",
-      "currentPrice": 381.85,
-      "change": -7.169999999999959,
-      "changePercent": -1.843092900107953,
+      "currentPrice": 381.87,
+      "change": -7.149999999999977,
+      "changePercent": -1.8379517762582842,
       "previousClose": 389.02,
       "high": 387,
       "low": 380.12,
@@ -294,9 +294,9 @@
     },
     "NVDA": {
       "ticker": "NVDA",
-      "currentPrice": 172.93,
-      "change": -5.6299999999999955,
-      "changePercent": -3.153001792114693,
+      "currentPrice": 172.7,
+      "change": -5.860000000000014,
+      "changePercent": -3.2818100358423017,
       "previousClose": 178.56,
       "high": 178.26,
       "low": 171.72,
@@ -326,10 +326,10 @@
   "compassData": {
     "direction": {
       "spy": {
-        "price": 648.54,
+        "price": 648.57,
         "ma200": 660.36,
         "percentVs200MA": -1.79,
-        "dailyChange": -1.71
+        "dailyChange": -1.7
       },
       "qqq": {
         "price": 582.06,
@@ -346,8 +346,8 @@
     },
     "volatility": {
       "vix": {
-        "value": 27.44,
-        "dailyChange": 3.38,
+        "value": 26.78,
+        "dailyChange": 2.72,
         "isContango": true
       },
       "putCall": {
