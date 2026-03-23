@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-23T20:15:13.792Z",
+  "lastUpdated": "2026-03-23T20:20:50.630Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -132,9 +132,9 @@
     },
     "IEF": {
       "ticker": "IEF",
-      "currentPrice": 95.205,
-      "change": 0.32500000000000284,
-      "changePercent": 0.3425379426644212,
+      "currentPrice": 95.18,
+      "change": 0.30000000000001137,
+      "changePercent": 0.31618887015178265,
       "previousClose": 94.88,
       "high": 95.43,
       "low": 94.885,
@@ -284,9 +284,9 @@
     },
     "MSFT": {
       "ticker": "MSFT",
-      "currentPrice": 383.21,
-      "change": 1.339999999999975,
-      "changePercent": 0.3509047581637665,
+      "currentPrice": 383,
+      "change": 1.1299999999999955,
+      "changePercent": 0.29591222143661333,
       "previousClose": 381.87,
       "high": 387.21,
       "low": 381.68,
@@ -294,9 +294,9 @@
     },
     "NVDA": {
       "ticker": "NVDA",
-      "currentPrice": 175.68,
-      "change": 2.980000000000018,
-      "changePercent": 1.72553561088594,
+      "currentPrice": 175.64,
+      "change": 2.9399999999999977,
+      "changePercent": 1.7023740590619558,
       "previousClose": 172.7,
       "high": 178.37,
       "low": 174.76,
@@ -304,9 +304,9 @@
     },
     "AMZN": {
       "ticker": "AMZN",
-      "currentPrice": 210.25,
-      "change": 4.8799999999999955,
-      "changePercent": 2.376199055363488,
+      "currentPrice": 210.14,
+      "change": 4.769999999999982,
+      "changePercent": 2.3226371914106156,
       "previousClose": 205.37,
       "high": 212.8,
       "low": 209.51,
@@ -326,10 +326,10 @@
   "compassData": {
     "direction": {
       "spy": {
-        "price": 655.38,
+        "price": 655.415,
         "ma200": 660.66,
-        "percentVs200MA": -0.8,
-        "dailyChange": 1.05
+        "percentVs200MA": -0.79,
+        "dailyChange": 1.06
       },
       "qqq": {
         "price": 588,
@@ -338,16 +338,16 @@
         "dailyChange": 1.02
       },
       "iwm": {
-        "price": 247.45,
+        "price": 247.38,
         "ma200": 241.41,
-        "percentVs200MA": 2.5,
-        "dailyChange": 2.16
+        "percentVs200MA": 2.47,
+        "dailyChange": 2.13
       }
     },
     "volatility": {
       "vix": {
-        "value": 26.31,
-        "dailyChange": -0.47,
+        "value": 26.46,
+        "dailyChange": -0.32,
         "isContango": false
       },
       "putCall": {
