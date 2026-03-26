@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-26T20:12:17.278Z",
+  "lastUpdated": "2026-03-26T20:17:41.448Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -304,9 +304,9 @@
     },
     "AMZN": {
       "ticker": "AMZN",
-      "currentPrice": 207.68,
-      "change": -4.030000000000001,
-      "changePercent": -1.9035473052760856,
+      "currentPrice": 207.54,
+      "change": -4.170000000000016,
+      "changePercent": -1.969675499504046,
       "previousClose": 211.71,
       "high": 212.885,
       "low": 207.12,
@@ -326,10 +326,10 @@
   "compassData": {
     "direction": {
       "spy": {
-        "price": 645.17,
+        "price": 645.09,
         "ma200": 661.48,
-        "percentVs200MA": -2.47,
-        "dailyChange": -1.77
+        "percentVs200MA": -2.48,
+        "dailyChange": -1.79
       },
       "qqq": {
         "price": 573.79,
@@ -346,8 +346,8 @@
     },
     "volatility": {
       "vix": {
-        "value": 28.1,
-        "dailyChange": 2.77,
+        "value": 28.36,
+        "dailyChange": 3.03,
         "isContango": false
       },
       "putCall": {
