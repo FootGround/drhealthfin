@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-07T20:15:10.692Z",
+  "lastUpdated": "2026-04-07T20:29:32.119Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -294,9 +294,9 @@
     },
     "NVDA": {
       "ticker": "NVDA",
-      "currentPrice": 178.117,
-      "change": 0.47700000000000387,
-      "changePercent": 0.2685206034676897,
+      "currentPrice": 178.1,
+      "change": 0.46000000000000796,
+      "changePercent": 0.25895068678226074,
       "previousClose": 177.64,
       "high": 178.23,
       "low": 173.66,
@@ -338,16 +338,16 @@
         "dailyChange": 0.02
       },
       "iwm": {
-        "price": 252.91,
+        "price": 252.92,
         "ma200": 243.27,
-        "percentVs200MA": 3.96,
+        "percentVs200MA": 3.97,
         "dailyChange": 0.22
       }
     },
     "volatility": {
       "vix": {
-        "value": 26.08,
-        "dailyChange": 1.91,
+        "value": 25.76,
+        "dailyChange": 1.59,
         "isContango": false
       },
       "putCall": {
