@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2026-04-08T20:02:40.713Z",
+  "lastUpdated": "2026-04-08T20:16:36.392Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
       "ticker": "SPY",
-      "currentPrice": 676.06,
-      "change": 16.839999999999918,
-      "changePercent": 2.554534146415448,
+      "currentPrice": 676.01,
+      "change": 16.789999999999964,
+      "changePercent": 2.546949425078117,
       "previousClose": 659.22,
       "high": 677.08,
       "low": 671.46,
@@ -68,9 +68,9 @@
     },
     "IWM": {
       "ticker": "IWM",
-      "currentPrice": 260.51,
-      "change": 7.599999999999994,
-      "changePercent": 3.005021549167686,
+      "currentPrice": 260.47,
+      "change": 7.560000000000031,
+      "changePercent": 2.989205646277344,
       "previousClose": 252.91,
       "high": 262.27,
       "low": 258.41,
@@ -224,9 +224,9 @@
     },
     "XLF": {
       "ticker": "XLF",
-      "currentPrice": 51.21,
-      "change": 1.3299999999999983,
-      "changePercent": 2.666399358460301,
+      "currentPrice": 51.2,
+      "change": 1.3200000000000003,
+      "changePercent": 2.64635124298316,
       "previousClose": 49.88,
       "high": 51.48,
       "low": 50.9601,
@@ -294,9 +294,9 @@
     },
     "NVDA": {
       "ticker": "NVDA",
-      "currentPrice": 182.05,
-      "change": 3.950000000000017,
-      "changePercent": 2.217855137563176,
+      "currentPrice": 182.08,
+      "change": 3.980000000000018,
+      "changePercent": 2.234699606962391,
       "previousClose": 178.1,
       "high": 185.26,
       "low": 180.3,
@@ -346,8 +346,8 @@
     },
     "volatility": {
       "vix": {
-        "value": 21.35,
-        "dailyChange": -4.43,
+        "value": 21.01,
+        "dailyChange": -4.77,
         "isContango": true
       },
       "putCall": {
