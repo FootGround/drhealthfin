@@ -636,7 +636,7 @@ async function main() {
 
   console.log(`\n✅ Market data saved to ${outputPath}`);
   console.log(`📊 Total instruments: ${Object.keys(results.instruments).length}`);
-  console.log(`🧭 Compass pillars: ${Object.keys(results.compassData).length}`);
+  console.log(`🧭 Compass pillars: ${results.compassData ? Object.keys(results.compassData).length : 0}`);
   console.log('🎉 Done!');
 }
 
