@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-17T20:29:54.990Z",
+  "lastUpdated": "2026-04-17T20:53:27.802Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -338,10 +338,10 @@
         "dailyChange": 1.31
       },
       "iwm": {
-        "price": 275.81,
+        "price": 275.78,
         "ma200": 245.38,
-        "percentVs200MA": 12.4,
-        "dailyChange": 2.17
+        "percentVs200MA": 12.39,
+        "dailyChange": 2.16
       }
     },
     "volatility": {
