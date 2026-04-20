@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-20T20:05:11.354Z",
+  "lastUpdated": "2026-04-20T20:30:05.999Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -68,9 +68,9 @@
     },
     "IWM": {
       "ticker": "IWM",
-      "currentPrice": 277.37,
-      "change": 1.5900000000000318,
-      "changePercent": 0.5765465225904822,
+      "currentPrice": 277.35,
+      "change": 1.57000000000005,
+      "changePercent": 0.5692943650736276,
       "previousClose": 275.78,
       "high": 277.665,
       "low": 274.53,
@@ -326,10 +326,10 @@
   "compassData": {
     "direction": {
       "spy": {
-        "price": 708.76,
+        "price": 708.72,
         "ma200": 666.92,
         "percentVs200MA": 6.27,
-        "dailyChange": -0.19
+        "dailyChange": -0.2
       },
       "qqq": {
         "price": 646.79,
@@ -338,16 +338,16 @@
         "dailyChange": -0.32
       },
       "iwm": {
-        "price": 277.37,
+        "price": 277.35,
         "ma200": 245.66,
-        "percentVs200MA": 12.91,
-        "dailyChange": 0.58
+        "percentVs200MA": 12.9,
+        "dailyChange": 0.57
       }
     },
     "volatility": {
       "vix": {
-        "value": 19.09,
-        "dailyChange": 1.61,
+        "value": 18.87,
+        "dailyChange": 1.39,
         "isContango": true
       },
       "putCall": {
