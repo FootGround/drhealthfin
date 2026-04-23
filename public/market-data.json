@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-23T20:11:00.919Z",
+  "lastUpdated": "2026-04-23T20:35:20.134Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -132,9 +132,9 @@
     },
     "IEF": {
       "ticker": "IEF",
-      "currentPrice": 95.38,
-      "change": -0.14000000000000057,
-      "changePercent": -0.14656616415410445,
+      "currentPrice": 95.37,
+      "change": -0.14999999999999147,
+      "changePercent": -0.15703517587938806,
       "previousClose": 95.52,
       "high": 95.63,
       "low": 95.185,
@@ -294,9 +294,9 @@
     },
     "NVDA": {
       "ticker": "NVDA",
-      "currentPrice": 199.67,
-      "change": -2.8300000000000125,
-      "changePercent": -1.397530864197537,
+      "currentPrice": 199.64,
+      "change": -2.8600000000000136,
+      "changePercent": -1.4123456790123523,
       "previousClose": 202.5,
       "high": 203.829,
       "low": 197.2206,
@@ -304,9 +304,9 @@
     },
     "AMZN": {
       "ticker": "AMZN",
-      "currentPrice": 255.09,
-      "change": -0.27000000000001023,
-      "changePercent": -0.10573308270677093,
+      "currentPrice": 255.08,
+      "change": -0.28000000000000114,
+      "changePercent": -0.109649122807018,
       "previousClose": 255.36,
       "high": 258.79,
       "low": 253.07,
@@ -326,10 +326,10 @@
   "compassData": {
     "direction": {
       "spy": {
-        "price": 708.36,
-        "ma200": 668.2,
-        "percentVs200MA": 6.01,
-        "dailyChange": -0.4
+        "price": 708.45,
+        "ma200": 668.21,
+        "percentVs200MA": 6.02,
+        "dailyChange": -0.39
       },
       "qqq": {
         "price": 651.42,
@@ -338,16 +338,16 @@
         "dailyChange": -0.56
       },
       "iwm": {
-        "price": 275.5,
+        "price": 275.52,
         "ma200": 246.47,
-        "percentVs200MA": 11.78,
+        "percentVs200MA": 11.79,
         "dailyChange": -0.35
       }
     },
     "volatility": {
       "vix": {
-        "value": 19.21,
-        "dailyChange": 0.29,
+        "value": 19.31,
+        "dailyChange": 0.39,
         "isContango": true
       },
       "putCall": {
