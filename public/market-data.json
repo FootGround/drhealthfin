@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-29T20:09:29.106Z",
+  "lastUpdated": "2026-04-29T20:39:44.016Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -234,9 +234,9 @@
     },
     "XLE": {
       "ticker": "XLE",
-      "currentPrice": 59.05,
-      "change": 1.3399999999999963,
-      "changePercent": 2.3219546005891463,
+      "currentPrice": 59.03,
+      "change": 1.3200000000000003,
+      "changePercent": 2.2872985617743895,
       "previousClose": 57.71,
       "high": 59.11,
       "low": 58.06,
@@ -294,9 +294,9 @@
     },
     "NVDA": {
       "ticker": "NVDA",
-      "currentPrice": 209.26311,
-      "change": -3.9068899999999758,
-      "changePercent": -1.8327578927616346,
+      "currentPrice": 209.25,
+      "change": -3.9199999999999875,
+      "changePercent": -1.838907913871552,
       "previousClose": 213.17,
       "high": 212.72,
       "low": 207.5758,
@@ -326,10 +326,10 @@
   "compassData": {
     "direction": {
       "spy": {
-        "price": 711.63,
+        "price": 711.58,
         "ma200": 669.98,
-        "percentVs200MA": 6.22,
-        "dailyChange": -0.01
+        "percentVs200MA": 6.21,
+        "dailyChange": -0.02
       },
       "qqq": {
         "price": 661.57,
@@ -346,8 +346,8 @@
     },
     "volatility": {
       "vix": {
-        "value": 18.48,
-        "dailyChange": 0.65,
+        "value": 18.81,
+        "dailyChange": 0.98,
         "isContango": true
       },
       "putCall": {
