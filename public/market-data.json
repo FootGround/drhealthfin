@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-30T20:09:24.889Z",
+  "lastUpdated": "2026-04-30T20:39:26.147Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -68,9 +68,9 @@
     },
     "IWM": {
       "ticker": "IWM",
-      "currentPrice": 277.96,
-      "change": 5.8799999999999955,
-      "changePercent": 2.161129079682445,
+      "currentPrice": 277.97,
+      "change": 5.890000000000043,
+      "changePercent": 2.164804469273759,
       "previousClose": 272.08,
       "high": 278.22,
       "low": 272.44,
@@ -214,9 +214,9 @@
     },
     "XLK": {
       "ticker": "XLK",
-      "currentPrice": 159.46,
-      "change": 0.3499999999999943,
-      "changePercent": 0.2199736031676163,
+      "currentPrice": 159.5,
+      "change": 0.38999999999998636,
+      "changePercent": 0.24511344352962497,
       "previousClose": 159.11,
       "high": 159.8,
       "low": 156.88,
@@ -224,9 +224,9 @@
     },
     "XLF": {
       "ticker": "XLF",
-      "currentPrice": 52.14,
-      "change": 0.21999999999999886,
-      "changePercent": 0.42372881355931985,
+      "currentPrice": 52.13,
+      "change": 0.21000000000000085,
+      "changePercent": 0.40446841294299085,
       "previousClose": 51.92,
       "high": 52.25,
       "low": 51.2,
@@ -234,9 +234,9 @@
     },
     "XLE": {
       "ticker": "XLE",
-      "currentPrice": 59.62,
-      "change": 0.5899999999999963,
-      "changePercent": 0.9994917838387197,
+      "currentPrice": 59.65,
+      "change": 0.6199999999999974,
+      "changePercent": 1.0503133999661145,
       "previousClose": 59.03,
       "high": 59.835,
       "low": 57.935,
@@ -284,9 +284,9 @@
     },
     "MSFT": {
       "ticker": "MSFT",
-      "currentPrice": 407.776,
-      "change": -16.68399999999997,
-      "changePercent": -3.9306412853979102,
+      "currentPrice": 407.78,
+      "change": -16.680000000000007,
+      "changePercent": -3.9296989115582166,
       "previousClose": 424.46,
       "high": 414.42,
       "low": 398.01,
@@ -294,9 +294,9 @@
     },
     "NVDA": {
       "ticker": "NVDA",
-      "currentPrice": 199.531,
-      "change": -9.718999999999994,
-      "changePercent": -4.644683393070487,
+      "currentPrice": 199.57,
+      "change": -9.680000000000007,
+      "changePercent": -4.626045400238952,
       "previousClose": 209.25,
       "high": 210.3,
       "low": 198.7,
@@ -338,16 +338,16 @@
         "dailyChange": 0.93
       },
       "iwm": {
-        "price": 277.96,
+        "price": 277.97,
         "ma200": 247.8,
-        "percentVs200MA": 12.17,
+        "percentVs200MA": 12.18,
         "dailyChange": 2.16
       }
     },
     "volatility": {
       "vix": {
-        "value": 16.97,
-        "dailyChange": -1.84,
+        "value": 16.89,
+        "dailyChange": -1.92,
         "isContango": true
       },
       "putCall": {
