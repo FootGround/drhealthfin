@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-08T20:25:22.583Z",
+  "lastUpdated": "2026-05-08T20:49:10.724Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -338,16 +338,16 @@
         "dailyChange": 2.34
       },
       "iwm": {
-        "price": 284.23,
+        "price": 284.17,
         "ma200": 249.57,
-        "percentVs200MA": 13.89,
-        "dailyChange": 0.7
+        "percentVs200MA": 13.86,
+        "dailyChange": 0.68
       }
     },
     "volatility": {
       "vix": {
-        "value": 17.15,
-        "dailyChange": 0.07,
+        "value": 17.19,
+        "dailyChange": 0.11,
         "isContango": true
       },
       "putCall": {
