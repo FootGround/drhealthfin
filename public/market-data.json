@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-11T20:07:10.485Z",
+  "lastUpdated": "2026-05-11T20:51:12.483Z",
   "marketOpen": true,
   "instruments": {
     "SPY": {
@@ -68,9 +68,9 @@
     },
     "IWM": {
       "ticker": "IWM",
-      "currentPrice": 285.4,
-      "change": 1.2299999999999613,
-      "changePercent": 0.43283949748388684,
+      "currentPrice": 285.33,
+      "change": 1.1599999999999682,
+      "changePercent": 0.4082063553506592,
       "previousClose": 284.17,
       "high": 287.05,
       "low": 284.59,
@@ -132,9 +132,9 @@
     },
     "IEF": {
       "ticker": "IEF",
-      "currentPrice": 94.65,
-      "change": -0.30999999999998806,
-      "changePercent": -0.3264532434709226,
+      "currentPrice": 94.64,
+      "change": -0.3199999999999932,
+      "changePercent": -0.336983993260313,
       "previousClose": 94.96,
       "high": 94.879,
       "low": 94.635,
@@ -326,10 +326,10 @@
   "compassData": {
     "direction": {
       "spy": {
-        "price": 739.26,
+        "price": 739.3,
         "ma200": 673.95,
-        "percentVs200MA": 9.69,
-        "dailyChange": 0.22
+        "percentVs200MA": 9.7,
+        "dailyChange": 0.23
       },
       "qqq": {
         "price": 713.29,
@@ -338,16 +338,16 @@
         "dailyChange": 0.29
       },
       "iwm": {
-        "price": 285.4,
+        "price": 285.33,
         "ma200": 249.88,
-        "percentVs200MA": 14.22,
-        "dailyChange": 0.43
+        "percentVs200MA": 14.19,
+        "dailyChange": 0.41
       }
     },
     "volatility": {
       "vix": {
-        "value": 18.4,
-        "dailyChange": 1.21,
+        "value": 18.38,
+        "dailyChange": 1.19,
         "isContango": true
       },
       "putCall": {
