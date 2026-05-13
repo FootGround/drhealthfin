@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-05-13T20:21:07.562Z",
-  "marketOpen": true,
+  "lastUpdated": "2026-05-13T21:04:17.821Z",
+  "marketOpen": false,
   "instruments": {
     "SPY": {
       "ticker": "SPY",
@@ -338,16 +338,16 @@
         "dailyChange": 1.06
       },
       "iwm": {
-        "price": 282.69,
+        "price": 282.67,
         "ma200": 250.46,
-        "percentVs200MA": 12.87,
+        "percentVs200MA": 12.86,
         "dailyChange": 0.04
       }
     },
     "volatility": {
       "vix": {
-        "value": 17.93,
-        "dailyChange": -0.06,
+        "value": 17.87,
+        "dailyChange": -0.12,
         "isContango": true
       },
       "putCall": {
